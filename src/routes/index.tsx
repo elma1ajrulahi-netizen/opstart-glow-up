@@ -7,11 +7,11 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "OpstartDesk — Je BV opstarten, persoonlijk begeleid" },
+      { title: "OpstartDesk — Je besloten vennootschap opstarten, persoonlijk begeleid" },
       {
         name: "description",
         content:
-          "Een vast contactpersoon, één duidelijke prijs en je BV in 8 tot 15 werkdagen opgericht. 100% digitaal vanuit heel België.",
+          "Een vast contactpersoon, één duidelijke prijs en je besloten vennootschap in 8 tot 15 werkdagen opgericht. 100% digitaal vanuit heel België.",
       },
     ],
   }),
@@ -25,6 +25,7 @@ function Index() {
       <TrustBar />
       <ThreeSteps />
       <WhyTrust />
+      <Werkwijze />
       <Pricing />
       <FAQ />
       <CTA />
@@ -58,12 +59,13 @@ function Header() {
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
           <a href="#stappen" className="hover:text-foreground transition-colors">Hoe het werkt</a>
+          <a href="#werkwijze" className="hover:text-foreground transition-colors">Werkwijze</a>
           <a href="#waarom" className="hover:text-foreground transition-colors">Waarom ons</a>
           <a href="#prijzen" className="hover:text-foreground transition-colors">Prijzen</a>
           <a href="#faq" className="hover:text-foreground transition-colors">FAQ</a>
         </nav>
         <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
-          <a href="#start">Start je BV</a>
+          <a href="#start">Start je besloten vennootschap</a>
         </Button>
       </div>
     </header>
@@ -83,7 +85,7 @@ function Hero() {
           <span className="italic text-primary">eenvoudig en goed begeleid.</span>
         </h1>
         <p className="mt-6 text-lg text-muted-foreground max-w-lg mx-auto leading-relaxed">
-          Wij richten je vennootschap (BV) op van A tot Z. Eén vast contactpersoon, een duidelijke prijs en alles geregeld in 8 tot 15 werkdagen — volledig online vanuit heel België.
+          Wij richten je besloten vennootschap op van A tot Z. Eén vast contactpersoon, een duidelijke prijs en alles geregeld in 8 tot 15 werkdagen — volledig online vanuit heel België.
         </p>
         <div className="mt-8 flex flex-wrap gap-3 justify-center">
           <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6">
@@ -91,7 +93,7 @@ function Hero() {
               Start in 3 stappen <ArrowRight className="ml-2 h-4 w-4" />
             </a>
           </Button>
-          <Button asChild size="lg" variant="outline" className="rounded-full h-12 px-6 border-foreground/20">
+          <Button asChild size="lg" variant="ghost" className="h-12 px-6 text-foreground hover:bg-transparent hover:text-primary">
             <a href="#stappen">Bekijk hoe het werkt</a>
           </Button>
         </div>
@@ -166,7 +168,7 @@ function ThreeSteps() {
         </div>
         <div className="mt-10 text-center">
           <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7">
-            <a href="#start">Start nu in 3 stappen <ArrowRight className="ml-2 h-4 w-4" /></a>
+            <a href="#start">Start nu <ArrowRight className="ml-2 h-4 w-4" /></a>
           </Button>
         </div>
       </div>
@@ -203,6 +205,42 @@ function WhyTrust() {
             </div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+function Werkwijze() {
+  const stappen = [
+    { n: "1", title: "Intakegesprek", desc: "We bespreken je plannen, doelen en situatie. Zo weten we precies wat je nodig hebt." },
+    { n: "2", title: "Documenten verzamelen", desc: "Je krijgt een duidelijke checklist. Wij begeleiden je stap voor stap bij het aanleveren." },
+    { n: "3", title: "Financieel plan opstellen", desc: "Onze experts maken een gedegen financieel plan dat voldoet aan alle wettelijke vereisten." },
+    { n: "4", title: "Statuten & oprichting", desc: "We stellen de statuten op en regelen de officiële oprichting volledig digitaal." },
+    { n: "5", title: "Publicatie & afronding", desc: "Publicatie in het Belgisch Staatsblad. Je besloten vennootschap is officieel actief." },
+  ];
+  return (
+    <section id="werkwijze" className="py-20 lg:py-28">
+      <div className="mx-auto max-w-4xl px-6">
+        <div className="max-w-2xl">
+          <span className="text-xs uppercase tracking-[0.2em] text-accent font-medium">Werkwijze</span>
+          <h2 className="mt-3 font-serif text-4xl lg:text-5xl text-foreground">
+            Onze aanpak, <span className="italic">van begin tot eind.</span>
+          </h2>
+          <p className="mt-4 text-muted-foreground">Een helder traject in vijf stappen. Jij weet altijd waar je staat.</p>
+        </div>
+        <ol className="mt-12 space-y-4">
+          {stappen.map((s) => (
+            <li key={s.n} className="flex gap-5 bg-card border border-border rounded-2xl p-6">
+              <div className="h-10 w-10 rounded-full bg-primary text-primary-foreground font-serif flex items-center justify-center shrink-0">
+                {s.n}
+              </div>
+              <div>
+                <h3 className="font-serif text-xl text-foreground">{s.title}</h3>
+                <p className="mt-1 text-muted-foreground leading-relaxed">{s.desc}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
