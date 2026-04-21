@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check, Shield, Clock, Users, FileText, Sparkles } from "lucide-react";
+import { ArrowRight, Check, Shield, Clock, Users, FileText, Sparkles, MessageCircle } from "lucide-react";
 import heroImg from "@/assets/hero-advisor.jpg";
 import logoWordmark from "@/assets/logo-1-wordmark.png";
 
@@ -30,7 +30,23 @@ function Index() {
       <FAQ />
       <CTA />
       <Footer />
+      <WhatsAppBubble />
     </div>
+  );
+}
+
+function WhatsAppBubble() {
+  return (
+    <a
+      href="https://wa.me/32000000000"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat met ons via WhatsApp"
+      className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white pl-4 pr-5 py-3 shadow-xl shadow-black/15 hover:scale-105 transition-transform"
+    >
+      <MessageCircle className="h-5 w-5" fill="currentColor" />
+      <span className="text-sm font-medium">WhatsApp</span>
+    </a>
   );
 }
 
