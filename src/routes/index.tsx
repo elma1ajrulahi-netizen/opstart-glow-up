@@ -250,35 +250,41 @@ function Werkwijze() {
 function Reviews() {
   const reviews = [
     {
-      name: "Lien D.",
-      role: "Oprichter, marketingbureau",
+      name: "Pieter V.",
+      role: "E-commerce ondernemer",
       stars: 5,
-      text: "Alles geregeld zonder dat ik mij moest verplaatsen. Mijn vast contactpersoon was telkens snel bereikbaar — echt een verschil met andere kantoren.",
+      text: "Ik had geen idee waar te beginnen met mijn besloten vennootschap. OpstartDesk heeft alles geregeld. Binnen 10 werkdagen had ik mijn BV. Top service!",
     },
     {
-      name: "Mathieu V.",
-      role: "Zelfstandig consultant",
+      name: "Sarah D.",
+      role: "Freelance consultant",
       stars: 5,
-      text: "Op 9 werkdagen stond mijn besloten vennootschap op poten. Vaste prijs vooraf, geen verrassingen achteraf. Aanrader.",
+      text: "Heel professioneel en persoonlijk. Elke vraag werd snel beantwoord. Ik raad het iedereen aan die een besloten vennootschap wil oprichten.",
     },
     {
-      name: "Sofie B.",
-      role: "Eigenaar webshop",
+      name: "Mohamed B.",
+      role: "Horeca-uitbater",
       stars: 5,
-      text: "Ik wist niets van statuten of een financieel plan. Ze legden alles rustig uit en namen het volledige papierwerk over.",
+      text: "Het financieel plan was uitstekend opgesteld. Alles verliep vlot en digitaal. Geen gedoe met papieren of verplaatsingen.",
+    },
+    {
+      name: "Lisa M.",
+      role: "IT-startup founder",
+      stars: 5,
+      text: "Ultimate pakket gekozen en binnen 6 werkdagen was alles in orde. Ongelooflijk snel en correct. Dankjewel OpstartDesk!",
     },
   ];
   return (
     <section id="reviews" className="py-20 lg:py-28 bg-secondary/40 border-y border-border">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
-          <span className="text-xs uppercase tracking-[0.2em] text-accent font-medium">Reviews</span>
+          <span className="text-xs uppercase tracking-[0.2em] text-accent font-medium">Klantenervaring</span>
           <h2 className="mt-3 font-serif text-4xl lg:text-5xl text-foreground">
-            Wat ondernemers <span className="italic">over ons zeggen.</span>
+            Wat klanten <span className="italic">over ons zeggen.</span>
           </h2>
-          <p className="mt-4 text-muted-foreground">Echte ervaringen van mensen die we begeleidden bij de oprichting.</p>
+          <p className="mt-4 text-muted-foreground">Echte ervaringen van ondernemers die we begeleidden bij hun oprichting.</p>
         </div>
-        <div className="mt-12 grid md:grid-cols-3 gap-6">
+        <div className="mt-12 grid md:grid-cols-2 gap-6">
           {reviews.map((r) => (
             <div key={r.name} className="bg-card border border-border rounded-2xl p-7 flex flex-col">
               <Quote className="h-6 w-6 text-primary/40" />
