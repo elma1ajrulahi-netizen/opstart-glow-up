@@ -98,7 +98,7 @@ function Hero() {
             </Button>
           </div>
           <ul className="mt-8 grid sm:grid-cols-2 gap-3 text-sm text-muted-foreground">
-            {["Transparante prijs, geen verrassingen", "Notaris via volmacht, geen verplaatsing", "Vast aanspreekpunt per e-mail & telefoon", "Begeleiding van A tot Z"].map((t) => (
+            {["Transparante prijs, geen verrassingen", "100% digitaal, geen verplaatsing nodig", "Vast aanspreekpunt per e-mail & telefoon", "Begeleiding van A tot Z"].map((t) => (
               <li key={t} className="flex items-start gap-2">
                 <Check className="h-4 w-4 text-primary mt-0.5 shrink-0" /> {t}
               </li>
@@ -158,7 +158,7 @@ function ThreeSteps() {
     {
       n: "02",
       title: "Wij regelen het papierwerk",
-      desc: "Financieel plan, statuten, notaris via volmacht en publicatie — alles in één traject.",
+      desc: "Financieel plan, statuten en publicatie — alles digitaal in één traject geregeld.",
     },
     {
       n: "03",
@@ -233,14 +233,14 @@ function Pricing() {
     {
       name: "Premium",
       timing: "Klaar in max. 15 werkdagen",
-      features: ["Volledig oprichtingstraject", "Notaris via volmacht", "Financieel plan", "Persoonlijke begeleiding"],
+      features: ["Volledig oprichtingstraject", "100% digitaal afgehandeld", "Financieel plan", "Persoonlijke begeleiding"],
       cta: "Kies Premium",
       highlight: false,
     },
     {
       name: "Ultimate",
       timing: "Klaar in max. 8 werkdagen",
-      features: ["Alles uit Premium", "Voorrangsbehandeling", "Snellere notarisafspraak", "Directe lijn met je adviseur"],
+      features: ["Alles uit Premium", "Voorrangsbehandeling", "Snellere doorlooptijd", "Directe lijn met je adviseur"],
       cta: "Kies Ultimate",
       highlight: true,
     },
@@ -314,12 +314,12 @@ function FAQ() {
       a: "Tussen 8 en 15 werkdagen, afhankelijk van het traject dat je kiest en hoe snel jij de gevraagde info aanlevert.",
     },
     {
-      q: "Moet ik fysiek naar de notaris?",
-      a: "Nee. We werken met volmacht — alles verloopt digitaal vanuit heel België.",
+      q: "Moet ik mij verplaatsen?",
+      a: "Nee. Alles verloopt 100% digitaal vanuit heel België — geen verplaatsing nodig.",
     },
     {
       q: "Wat zit er in de prijs?",
-      a: "Volledig oprichtingstraject, financieel plan, statuten, notaris en publicatie in het Belgisch Staatsblad. Geen verborgen kosten.",
+      a: "Volledig oprichtingstraject, financieel plan, statuten en publicatie in het Belgisch Staatsblad. Geen verborgen kosten.",
     },
     {
       q: "Wat als ik nog vragen heb tijdens het traject?",
