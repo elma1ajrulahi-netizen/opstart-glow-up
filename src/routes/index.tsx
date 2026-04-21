@@ -210,6 +210,42 @@ function WhyTrust() {
   );
 }
 
+function Werkwijze() {
+  const stappen = [
+    { n: "1", title: "Intakegesprek", desc: "We bespreken je plannen, doelen en situatie. Zo weten we precies wat je nodig hebt." },
+    { n: "2", title: "Documenten verzamelen", desc: "Je krijgt een duidelijke checklist. Wij begeleiden je stap voor stap bij het aanleveren." },
+    { n: "3", title: "Financieel plan opstellen", desc: "Onze experts maken een gedegen financieel plan dat voldoet aan alle wettelijke vereisten." },
+    { n: "4", title: "Statuten & oprichting", desc: "We stellen de statuten op en regelen de officiële oprichting volledig digitaal." },
+    { n: "5", title: "Publicatie & afronding", desc: "Publicatie in het Belgisch Staatsblad. Je besloten vennootschap is officieel actief." },
+  ];
+  return (
+    <section id="werkwijze" className="py-20 lg:py-28">
+      <div className="mx-auto max-w-4xl px-6">
+        <div className="max-w-2xl">
+          <span className="text-xs uppercase tracking-[0.2em] text-accent font-medium">Werkwijze</span>
+          <h2 className="mt-3 font-serif text-4xl lg:text-5xl text-foreground">
+            Onze aanpak, <span className="italic">van begin tot eind.</span>
+          </h2>
+          <p className="mt-4 text-muted-foreground">Een helder traject in vijf stappen. Jij weet altijd waar je staat.</p>
+        </div>
+        <ol className="mt-12 space-y-4">
+          {stappen.map((s) => (
+            <li key={s.n} className="flex gap-5 bg-card border border-border rounded-2xl p-6">
+              <div className="h-10 w-10 rounded-full bg-primary text-primary-foreground font-serif flex items-center justify-center shrink-0">
+                {s.n}
+              </div>
+              <div>
+                <h3 className="font-serif text-xl text-foreground">{s.title}</h3>
+                <p className="mt-1 text-muted-foreground leading-relaxed">{s.desc}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
 function Pricing() {
   const tiers = [
     {
