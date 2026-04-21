@@ -7,11 +7,11 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "OpstartDesk — Je BV opstarten, persoonlijk begeleid" },
+      { title: "OpstartDesk — Je besloten vennootschap opstarten, persoonlijk begeleid" },
       {
         name: "description",
         content:
-          "Een vast contactpersoon, één duidelijke prijs en je BV in 8 tot 15 werkdagen opgericht. 100% digitaal vanuit heel België.",
+          "Een vast contactpersoon, één duidelijke prijs en je besloten vennootschap in 8 tot 15 werkdagen opgericht. 100% digitaal vanuit heel België.",
       },
     ],
   }),
@@ -58,12 +58,13 @@ function Header() {
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
           <a href="#stappen" className="hover:text-foreground transition-colors">Hoe het werkt</a>
+          <a href="#werkwijze" className="hover:text-foreground transition-colors">Werkwijze</a>
           <a href="#waarom" className="hover:text-foreground transition-colors">Waarom ons</a>
           <a href="#prijzen" className="hover:text-foreground transition-colors">Prijzen</a>
           <a href="#faq" className="hover:text-foreground transition-colors">FAQ</a>
         </nav>
         <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
-          <a href="#start">Start je BV</a>
+          <a href="#start">Start je besloten vennootschap</a>
         </Button>
       </div>
     </header>
@@ -83,7 +84,7 @@ function Hero() {
           <span className="italic text-primary">eenvoudig en goed begeleid.</span>
         </h1>
         <p className="mt-6 text-lg text-muted-foreground max-w-lg mx-auto leading-relaxed">
-          Wij richten je vennootschap (BV) op van A tot Z. Eén vast contactpersoon, een duidelijke prijs en alles geregeld in 8 tot 15 werkdagen — volledig online vanuit heel België.
+          Wij richten je besloten vennootschap op van A tot Z. Eén vast contactpersoon, een duidelijke prijs en alles geregeld in 8 tot 15 werkdagen — volledig online vanuit heel België.
         </p>
         <div className="mt-8 flex flex-wrap gap-3 justify-center">
           <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6">
@@ -91,7 +92,7 @@ function Hero() {
               Start in 3 stappen <ArrowRight className="ml-2 h-4 w-4" />
             </a>
           </Button>
-          <Button asChild size="lg" variant="outline" className="rounded-full h-12 px-6 border-foreground/20">
+          <Button asChild size="lg" variant="ghost" className="h-12 px-6 text-foreground hover:bg-transparent hover:text-primary">
             <a href="#stappen">Bekijk hoe het werkt</a>
           </Button>
         </div>
@@ -166,7 +167,7 @@ function ThreeSteps() {
         </div>
         <div className="mt-10 text-center">
           <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7">
-            <a href="#start">Start nu in 3 stappen <ArrowRight className="ml-2 h-4 w-4" /></a>
+            <a href="#start">Start nu <ArrowRight className="ml-2 h-4 w-4" /></a>
           </Button>
         </div>
       </div>
