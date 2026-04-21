@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check, Shield, Clock, Users, FileText, Sparkles, MessageCircle } from "lucide-react";
+import { ArrowRight, Check, Shield, Clock, Users, FileText, Sparkles, MessageCircle, Star, Quote } from "lucide-react";
 import logoWordmark from "@/assets/logo-1-wordmark.png";
 
 export const Route = createFileRoute("/")({
@@ -26,6 +26,7 @@ function Index() {
       <ThreeSteps />
       <WhyTrust />
       <Werkwijze />
+      <Reviews />
       <Pricing />
       <FAQ />
       <CTA />
@@ -241,6 +242,59 @@ function Werkwijze() {
             </li>
           ))}
         </ol>
+      </div>
+    </section>
+  );
+}
+
+function Reviews() {
+  const reviews = [
+    {
+      name: "Lien D.",
+      role: "Oprichter, marketingbureau",
+      stars: 5,
+      text: "Alles geregeld zonder dat ik mij moest verplaatsen. Mijn vast contactpersoon was telkens snel bereikbaar — echt een verschil met andere kantoren.",
+    },
+    {
+      name: "Mathieu V.",
+      role: "Zelfstandig consultant",
+      stars: 5,
+      text: "Op 9 werkdagen stond mijn besloten vennootschap op poten. Vaste prijs vooraf, geen verrassingen achteraf. Aanrader.",
+    },
+    {
+      name: "Sofie B.",
+      role: "Eigenaar webshop",
+      stars: 5,
+      text: "Ik wist niets van statuten of een financieel plan. Ze legden alles rustig uit en namen het volledige papierwerk over.",
+    },
+  ];
+  return (
+    <section id="reviews" className="py-20 lg:py-28 bg-secondary/40 border-y border-border">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="max-w-2xl">
+          <span className="text-xs uppercase tracking-[0.2em] text-accent font-medium">Reviews</span>
+          <h2 className="mt-3 font-serif text-4xl lg:text-5xl text-foreground">
+            Wat ondernemers <span className="italic">over ons zeggen.</span>
+          </h2>
+          <p className="mt-4 text-muted-foreground">Echte ervaringen van mensen die we begeleidden bij de oprichting.</p>
+        </div>
+        <div className="mt-12 grid md:grid-cols-3 gap-6">
+          {reviews.map((r) => (
+            <div key={r.name} className="bg-card border border-border rounded-2xl p-7 flex flex-col">
+              <Quote className="h-6 w-6 text-primary/40" />
+              <div className="mt-3 flex gap-0.5">
+                {Array.from({ length: r.stars }).map((_, i) => (
+                  <Star key={i} className="h-4 w-4 fill-accent text-accent" />
+                ))}
+              </div>
+              <p className="mt-4 text-foreground leading-relaxed flex-1">"{r.text}"</p>
+              <div className="mt-6 pt-5 border-t border-border">
+                <div className="font-serif text-base text-foreground">{r.name}</div>
+                <div className="text-sm text-muted-foreground">{r.role}</div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
