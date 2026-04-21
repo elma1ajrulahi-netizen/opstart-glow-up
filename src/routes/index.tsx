@@ -25,6 +25,7 @@ function Index() {
       <TrustBar />
       <ThreeSteps />
       <WhyTrust />
+      <Werkwijze />
       <Pricing />
       <FAQ />
       <CTA />
