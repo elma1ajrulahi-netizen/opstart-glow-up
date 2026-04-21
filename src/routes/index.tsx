@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check, Shield, Clock, Users, FileText, Sparkles, MessageCircle } from "lucide-react";
-import heroImg from "@/assets/hero-advisor.jpg";
 import logoWordmark from "@/assets/logo-1-wordmark.png";
 
 export const Route = createFileRoute("/")({
@@ -74,54 +73,35 @@ function Header() {
 function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="mx-auto max-w-6xl px-6 pt-20 pb-16 lg:pt-28 lg:pb-24 grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16 items-center">
-        <div>
-          <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-            15+ jaar ervaring · 500+ ondernemers begeleid
-          </span>
-          <h1 className="mt-6 font-serif text-5xl lg:text-6xl leading-[1.05] tracking-tight text-foreground">
-            Je eigen onderneming starten,<br />
-            <span className="italic text-primary">eenvoudig en goed begeleid.</span>
-          </h1>
-          <p className="mt-6 text-lg text-muted-foreground max-w-lg leading-relaxed">
-            Wij richten je vennootschap (BV) op van A tot Z. Eén vast contactpersoon, een duidelijke prijs en alles geregeld in 8 tot 15 werkdagen — volledig online vanuit heel België.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6">
-              <a href="#start">
-                Start in 3 stappen <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-full h-12 px-6 border-foreground/20">
-              <a href="#stappen">Bekijk hoe het werkt</a>
-            </Button>
-          </div>
-          <ul className="mt-8 grid sm:grid-cols-2 gap-3 text-sm text-muted-foreground">
-            {["Transparante prijs, geen verrassingen", "100% digitaal, geen verplaatsing nodig", "Vast aanspreekpunt per e-mail & telefoon", "Begeleiding van A tot Z"].map((t) => (
-              <li key={t} className="flex items-start gap-2">
-                <Check className="h-4 w-4 text-primary mt-0.5 shrink-0" /> {t}
-              </li>
-            ))}
-          </ul>
+      <div className="mx-auto max-w-3xl px-6 pt-20 pb-16 lg:pt-28 lg:pb-24 text-center">
+        <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground">
+          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+          15+ jaar ervaring · 500+ ondernemers begeleid
+        </span>
+        <h1 className="mt-6 font-serif text-5xl lg:text-6xl leading-[1.05] tracking-tight text-foreground">
+          Je eigen onderneming starten,<br />
+          <span className="italic text-primary">eenvoudig en goed begeleid.</span>
+        </h1>
+        <p className="mt-6 text-lg text-muted-foreground max-w-lg mx-auto leading-relaxed">
+          Wij richten je vennootschap (BV) op van A tot Z. Eén vast contactpersoon, een duidelijke prijs en alles geregeld in 8 tot 15 werkdagen — volledig online vanuit heel België.
+        </p>
+        <div className="mt-8 flex flex-wrap gap-3 justify-center">
+          <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6">
+            <a href="#start">
+              Start in 3 stappen <ArrowRight className="ml-2 h-4 w-4" />
+            </a>
+          </Button>
+          <Button asChild size="lg" variant="outline" className="rounded-full h-12 px-6 border-foreground/20">
+            <a href="#stappen">Bekijk hoe het werkt</a>
+          </Button>
         </div>
-        <div className="relative">
-          <div className="absolute -inset-4 bg-secondary/60 rounded-[2rem] -z-10 rotate-2" />
-          <img
-            src={heroImg}
-            alt="Adviseur die ondernemers persoonlijk begeleidt"
-            className="rounded-[1.75rem] shadow-2xl shadow-primary/10 object-cover w-full aspect-[4/5]"
-            width={1280}
-            height={1280}
-          />
-          <div className="absolute -bottom-6 -left-6 bg-card border border-border rounded-2xl shadow-lg p-4 max-w-[220px]">
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-              Laatste oprichting
-            </div>
-            <div className="mt-1 font-serif text-lg text-foreground">3 dagen geleden</div>
-          </div>
-        </div>
+        <ul className="mt-10 grid sm:grid-cols-2 gap-3 text-sm text-muted-foreground max-w-xl mx-auto text-left">
+          {["Transparante prijs, geen verrassingen", "100% digitaal, geen verplaatsing nodig", "Vast aanspreekpunt per e-mail & telefoon", "Begeleiding van A tot Z"].map((t) => (
+            <li key={t} className="flex items-start gap-2">
+              <Check className="h-4 w-4 text-primary mt-0.5 shrink-0" /> {t}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
