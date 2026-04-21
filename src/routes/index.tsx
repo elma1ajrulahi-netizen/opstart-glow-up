@@ -81,11 +81,11 @@ function Hero() {
             15+ jaar ervaring · 500+ ondernemers begeleid
           </span>
           <h1 className="mt-6 font-serif text-5xl lg:text-6xl leading-[1.05] tracking-tight text-foreground">
-            Je BV opgericht,<br />
-            <span className="italic text-primary">zonder gedoe.</span>
+            Je eigen onderneming starten,<br />
+            <span className="italic text-primary">eenvoudig en goed begeleid.</span>
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-lg leading-relaxed">
-            Eén vast contactpersoon. Eén duidelijke prijs. Je vennootschap klaar in 8 tot 15 werkdagen — volledig digitaal vanuit heel België.
+            Wij richten je vennootschap (BV) op van A tot Z. Eén vast contactpersoon, een duidelijke prijs en alles geregeld in 8 tot 15 werkdagen — volledig online vanuit heel België.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6">
