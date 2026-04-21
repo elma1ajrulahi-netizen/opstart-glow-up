@@ -1,26 +1,371 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Check, Shield, Clock, Users, FileText, Sparkles } from "lucide-react";
+import heroImg from "@/assets/hero-advisor.jpg";
+import logoWordmark from "@/assets/logo-1-wordmark.png";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: "OpstartDesk — Je BV opstarten, persoonlijk begeleid" },
+      {
+        name: "description",
+        content:
+          "Een vast contactpersoon, één duidelijke prijs en je BV in 8 tot 15 werkdagen opgericht. 100% digitaal vanuit heel België.",
+      },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background text-foreground">
+      <Header />
+      <Hero />
+      <TrustBar />
+      <ThreeSteps />
+      <WhyTrust />
+      <Pricing />
+      <FAQ />
+      <CTA />
+      <Footer />
     </div>
   );
 }
 
-function Index() {
-  return <PlaceholderIndex />;
+function Header() {
+  return (
+    <header className="border-b border-border/60 bg-background/80 backdrop-blur sticky top-0 z-40">
+      <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
+        <a href="#top" className="flex items-center gap-2">
+          <img src={logoWordmark} alt="OpstartDesk" className="h-7 w-auto" />
+        </a>
+        <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
+          <a href="#stappen" className="hover:text-foreground transition-colors">Hoe het werkt</a>
+          <a href="#waarom" className="hover:text-foreground transition-colors">Waarom ons</a>
+          <a href="#prijzen" className="hover:text-foreground transition-colors">Prijzen</a>
+          <a href="#faq" className="hover:text-foreground transition-colors">FAQ</a>
+        </nav>
+        <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+          <a href="#start">Start je BV</a>
+        </Button>
+      </div>
+    </header>
+  );
+}
+
+function Hero() {
+  return (
+    <section id="top" className="relative overflow-hidden">
+      <div className="mx-auto max-w-6xl px-6 pt-20 pb-16 lg:pt-28 lg:pb-24 grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16 items-center">
+        <div>
+          <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+            15+ jaar ervaring · 500+ ondernemers begeleid
+          </span>
+          <h1 className="mt-6 font-serif text-5xl lg:text-6xl leading-[1.05] tracking-tight text-foreground">
+            Je BV opgericht,<br />
+            <span className="italic text-primary">zonder gedoe.</span>
+          </h1>
+          <p className="mt-6 text-lg text-muted-foreground max-w-lg leading-relaxed">
+            Eén vast contactpersoon. Eén duidelijke prijs. Je vennootschap klaar in 8 tot 15 werkdagen — volledig digitaal vanuit heel België.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6">
+              <a href="#start">
+                Start in 3 stappen <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="rounded-full h-12 px-6 border-foreground/20">
+              <a href="#stappen">Bekijk hoe het werkt</a>
+            </Button>
+          </div>
+          <ul className="mt-8 grid sm:grid-cols-2 gap-3 text-sm text-muted-foreground">
+            {["Transparante prijs, geen verrassingen", "Notaris via volmacht, geen verplaatsing", "Vast aanspreekpunt per e-mail & telefoon", "Begeleiding van A tot Z"].map((t) => (
+              <li key={t} className="flex items-start gap-2">
+                <Check className="h-4 w-4 text-primary mt-0.5 shrink-0" /> {t}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="relative">
+          <div className="absolute -inset-4 bg-secondary/60 rounded-[2rem] -z-10 rotate-2" />
+          <img
+            src={heroImg}
+            alt="Adviseur die ondernemers persoonlijk begeleidt"
+            className="rounded-[1.75rem] shadow-2xl shadow-primary/10 object-cover w-full aspect-[4/5]"
+            width={1280}
+            height={1280}
+          />
+          <div className="absolute -bottom-6 -left-6 bg-card border border-border rounded-2xl shadow-lg p-4 max-w-[220px]">
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+              <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+              Laatste oprichting
+            </div>
+            <div className="mt-1 font-serif text-lg text-foreground">3 dagen geleden</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function TrustBar() {
+  const items = [
+    { k: "15+", v: "jaar ervaring" },
+    { k: "500+", v: "ondernemers begeleid" },
+    { k: "100%", v: "digitaal traject" },
+    { k: "8 dgn", v: "snelste oprichting" },
+  ];
+  return (
+    <section className="border-y border-border bg-secondary/40">
+      <div className="mx-auto max-w-6xl px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
+        {items.map((i) => (
+          <div key={i.k} className="text-center md:text-left">
+            <div className="font-serif text-3xl text-primary">{i.k}</div>
+            <div className="text-sm text-muted-foreground mt-1">{i.v}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ThreeSteps() {
+  const steps = [
+    {
+      n: "01",
+      title: "Vertel ons over je plan",
+      desc: "Beantwoord een korte vragenlijst online. We weten meteen wat je nodig hebt.",
+    },
+    {
+      n: "02",
+      title: "Wij regelen het papierwerk",
+      desc: "Financieel plan, statuten, notaris via volmacht en publicatie — alles in één traject.",
+    },
+    {
+      n: "03",
+      title: "Je BV is klaar",
+      desc: "Tussen 8 en 15 werkdagen later ben je officieel ondernemer. Klaar om te starten.",
+    },
+  ];
+  return (
+    <section id="stappen" className="py-20 lg:py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="max-w-2xl">
+          <span className="text-xs uppercase tracking-[0.2em] text-accent font-medium">Hoe het werkt</span>
+          <h2 className="mt-3 font-serif text-4xl lg:text-5xl text-foreground">
+            Drie stappen. <span className="italic">Geen verrassingen.</span>
+          </h2>
+        </div>
+        <div className="mt-12 grid md:grid-cols-3 gap-6">
+          {steps.map((s) => (
+            <div key={s.n} className="bg-card border border-border rounded-2xl p-7 hover:shadow-xl hover:shadow-primary/5 transition-shadow">
+              <div className="font-serif text-sm text-accent">{s.n}</div>
+              <h3 className="mt-3 font-serif text-2xl text-foreground">{s.title}</h3>
+              <p className="mt-3 text-muted-foreground leading-relaxed">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-10 text-center">
+          <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7">
+            <a href="#start">Start nu in 3 stappen <ArrowRight className="ml-2 h-4 w-4" /></a>
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WhyTrust() {
+  const items = [
+    { icon: Users, title: "Eén vast contactpersoon", desc: "Geen callcenters, geen wachtrijen. Iemand die je kent bij naam." },
+    { icon: Shield, title: "15 jaar accountancy", desc: "Echte expertise, niet zomaar een online formulier." },
+    { icon: Clock, title: "Klaar in 8–15 werkdagen", desc: "Wij bewaken het tempo, jij focust op ondernemen." },
+    { icon: FileText, title: "Vaste prijs vooraf", desc: "Wat je ziet is wat je betaalt. Geen verborgen kosten." },
+  ];
+  return (
+    <section id="waarom" className="py-20 lg:py-28 bg-secondary/40 border-y border-border">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="max-w-2xl">
+          <span className="text-xs uppercase tracking-[0.2em] text-accent font-medium">Waarom OpstartDesk</span>
+          <h2 className="mt-3 font-serif text-4xl lg:text-5xl text-foreground">
+            Mensen kiezen ons omdat we <span className="italic">persoonlijk blijven.</span>
+          </h2>
+        </div>
+        <div className="mt-12 grid sm:grid-cols-2 gap-5">
+          {items.map(({ icon: Icon, title, desc }) => (
+            <div key={title} className="flex gap-4 bg-card border border-border rounded-2xl p-6">
+              <div className="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                <Icon className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="font-serif text-xl text-foreground">{title}</h3>
+                <p className="mt-1 text-muted-foreground text-sm leading-relaxed">{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Pricing() {
+  const tiers = [
+    {
+      name: "Premium",
+      timing: "Klaar in max. 15 werkdagen",
+      features: ["Volledig oprichtingstraject", "Notaris via volmacht", "Financieel plan", "Persoonlijke begeleiding"],
+      cta: "Kies Premium",
+      highlight: false,
+    },
+    {
+      name: "Ultimate",
+      timing: "Klaar in max. 8 werkdagen",
+      features: ["Alles uit Premium", "Voorrangsbehandeling", "Snellere notarisafspraak", "Directe lijn met je adviseur"],
+      cta: "Kies Ultimate",
+      highlight: true,
+    },
+  ];
+  return (
+    <section id="prijzen" className="py-20 lg:py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="max-w-2xl">
+          <span className="text-xs uppercase tracking-[0.2em] text-accent font-medium">Trajecten</span>
+          <h2 className="mt-3 font-serif text-4xl lg:text-5xl text-foreground">
+            Twee duidelijke trajecten.
+          </h2>
+          <p className="mt-4 text-muted-foreground">Kies wat past bij jouw timing. Geen verborgen kosten.</p>
+        </div>
+        <div className="mt-12 grid md:grid-cols-2 gap-6">
+          {tiers.map((t) => (
+            <div
+              key={t.name}
+              className={
+                "rounded-3xl p-8 border " +
+                (t.highlight
+                  ? "bg-primary text-primary-foreground border-primary shadow-2xl shadow-primary/20"
+                  : "bg-card border-border")
+              }
+            >
+              <div className="flex items-center justify-between">
+                <h3 className={"font-serif text-3xl " + (t.highlight ? "text-primary-foreground" : "text-foreground")}>
+                  {t.name}
+                </h3>
+                {t.highlight && (
+                  <span className="inline-flex items-center gap-1 text-xs bg-accent text-accent-foreground rounded-full px-2.5 py-1">
+                    <Sparkles className="h-3 w-3" /> Snelst
+                  </span>
+                )}
+              </div>
+              <p className={"mt-2 text-sm " + (t.highlight ? "text-primary-foreground/80" : "text-muted-foreground")}>
+                {t.timing}
+              </p>
+              <ul className="mt-6 space-y-3">
+                {t.features.map((f) => (
+                  <li key={f} className="flex items-start gap-2 text-sm">
+                    <Check className={"h-4 w-4 mt-0.5 shrink-0 " + (t.highlight ? "text-accent" : "text-primary")} />
+                    <span className={t.highlight ? "text-primary-foreground/90" : "text-foreground"}>{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <Button
+                asChild
+                size="lg"
+                className={
+                  "mt-8 w-full rounded-full h-12 " +
+                  (t.highlight
+                    ? "bg-accent text-accent-foreground hover:bg-accent/90"
+                    : "bg-primary text-primary-foreground hover:bg-primary/90")
+                }
+              >
+                <a href="#start">{t.cta}</a>
+              </Button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FAQ() {
+  const qs = [
+    {
+      q: "Hoe lang duurt de oprichting echt?",
+      a: "Tussen 8 en 15 werkdagen, afhankelijk van het traject dat je kiest en hoe snel jij de gevraagde info aanlevert.",
+    },
+    {
+      q: "Moet ik fysiek naar de notaris?",
+      a: "Nee. We werken met volmacht — alles verloopt digitaal vanuit heel België.",
+    },
+    {
+      q: "Wat zit er in de prijs?",
+      a: "Volledig oprichtingstraject, financieel plan, statuten, notaris en publicatie in het Belgisch Staatsblad. Geen verborgen kosten.",
+    },
+    {
+      q: "Wat als ik nog vragen heb tijdens het traject?",
+      a: "Je hebt één vast contactpersoon die je kent bij naam. Bereikbaar per e-mail en telefoon.",
+    },
+  ];
+  return (
+    <section id="faq" className="py-20 lg:py-28 bg-secondary/40 border-y border-border">
+      <div className="mx-auto max-w-3xl px-6">
+        <div className="text-center">
+          <span className="text-xs uppercase tracking-[0.2em] text-accent font-medium">FAQ</span>
+          <h2 className="mt-3 font-serif text-4xl lg:text-5xl text-foreground">Veelgestelde vragen</h2>
+        </div>
+        <div className="mt-10 space-y-3">
+          {qs.map((item) => (
+            <details key={item.q} className="group bg-card border border-border rounded-2xl p-6 open:shadow-md transition-shadow">
+              <summary className="cursor-pointer list-none flex items-center justify-between font-serif text-lg text-foreground">
+                {item.q}
+                <span className="ml-4 text-primary transition-transform group-open:rotate-45 text-2xl leading-none">+</span>
+              </summary>
+              <p className="mt-3 text-muted-foreground leading-relaxed">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CTA() {
+  return (
+    <section id="start" className="py-24 lg:py-32">
+      <div className="mx-auto max-w-4xl px-6">
+        <div className="rounded-[2rem] bg-primary text-primary-foreground p-10 lg:p-16 text-center relative overflow-hidden">
+          <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-accent/30 blur-3xl" />
+          <div className="relative">
+            <h2 className="font-serif text-4xl lg:text-5xl text-primary-foreground">
+              Klaar om te starten?
+            </h2>
+            <p className="mt-4 text-primary-foreground/80 max-w-lg mx-auto">
+              Begin met 3 korte vragen. Binnen één werkdag horen we van elkaar.
+            </p>
+            <Button asChild size="lg" className="mt-8 rounded-full bg-accent text-accent-foreground hover:bg-accent/90 h-13 px-8">
+              <a href="/start">
+                Start je BV in 3 stappen <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+            <p className="mt-4 text-xs text-primary-foreground/60">Geen verplaatsing nodig · Vaste prijs · Vast contactpersoon</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t border-border py-10">
+      <div className="mx-auto max-w-6xl px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+        <img src={logoWordmark} alt="OpstartDesk" className="h-6 w-auto" />
+        <div>© {new Date().getFullYear()} OpstartDesk · BV oprichten in België</div>
+      </div>
+    </footer>
+  );
 }
