@@ -1,18 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check, Shield, Clock, Users, FileText, Sparkles, MessageCircle } from "lucide-react";
-import heroImg from "@/assets/hero-advisor.jpg";
+import { ArrowRight, Check, Shield, Clock, Users, FileText, Sparkles, MessageCircle, Star, Quote } from "lucide-react";
 import logoWordmark from "@/assets/logo-1-wordmark.png";
 
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "OpstartDesk — Je BV opstarten, persoonlijk begeleid" },
+      { title: "OpstartDesk — Je besloten vennootschap opstarten, persoonlijk begeleid" },
       {
         name: "description",
         content:
-          "Een vast contactpersoon, één duidelijke prijs en je BV in 8 tot 15 werkdagen opgericht. 100% digitaal vanuit heel België.",
+          "Een vast contactpersoon, één duidelijke prijs en je besloten vennootschap in 8 tot 15 werkdagen opgericht. 100% digitaal vanuit heel België.",
       },
     ],
   }),
@@ -26,6 +25,8 @@ function Index() {
       <TrustBar />
       <ThreeSteps />
       <WhyTrust />
+      <Werkwijze />
+      <Reviews />
       <Pricing />
       <FAQ />
       <CTA />
@@ -38,7 +39,7 @@ function Index() {
 function WhatsAppBubble() {
   return (
     <a
-      href="https://wa.me/32491167881"
+      href="https://wa.me/32000000000"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat met ons via WhatsApp"
@@ -59,12 +60,13 @@ function Header() {
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
           <a href="#stappen" className="hover:text-foreground transition-colors">Hoe het werkt</a>
+          <a href="#werkwijze" className="hover:text-foreground transition-colors">Werkwijze</a>
           <a href="#waarom" className="hover:text-foreground transition-colors">Waarom ons</a>
           <a href="#prijzen" className="hover:text-foreground transition-colors">Prijzen</a>
           <a href="#faq" className="hover:text-foreground transition-colors">FAQ</a>
         </nav>
         <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
-          <a href="#start">Start je BV</a>
+          <a href="#start">Start je besloten vennootschap</a>
         </Button>
       </div>
     </header>
@@ -74,54 +76,35 @@ function Header() {
 function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="mx-auto max-w-6xl px-6 pt-20 pb-16 lg:pt-28 lg:pb-24 grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16 items-center">
-        <div>
-          <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-            15+ jaar ervaring · 500+ ondernemers begeleid
-          </span>
-          <h1 className="mt-6 font-serif text-5xl lg:text-6xl leading-[1.05] tracking-tight text-foreground">
-            Je eigen onderneming starten,<br />
-            <span className="italic text-primary">eenvoudig en goed begeleid.</span>
-          </h1>
-          <p className="mt-6 text-lg text-muted-foreground max-w-lg leading-relaxed">
-            Wij richten je vennootschap (BV) op van A tot Z. Eén vast contactpersoon, een duidelijke prijs en alles geregeld in 8 tot 15 werkdagen — volledig online vanuit heel België.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6">
-              <a href="#start">
-                Start in 3 stappen <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-full h-12 px-6 border-foreground/20">
-              <a href="/checklist.pdf" target="_blank" rel="noopener noreferrer">Download checklist</a>
-            </Button>
-          </div>
-          <ul className="mt-8 grid sm:grid-cols-2 gap-3 text-sm text-muted-foreground">
-            {["Transparante prijs, geen verrassingen", "Notaris via volmacht, geen verplaatsing", "Vast aanspreekpunt per e-mail & telefoon", "Begeleiding van A tot Z"].map((t) => (
-              <li key={t} className="flex items-start gap-2">
-                <Check className="h-4 w-4 text-primary mt-0.5 shrink-0" /> {t}
-              </li>
-            ))}
-          </ul>
+      <div className="mx-auto max-w-3xl px-6 pt-20 pb-16 lg:pt-28 lg:pb-24 text-center">
+        <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground">
+          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+          15+ jaar ervaring · 500+ ondernemers begeleid
+        </span>
+        <h1 className="mt-6 font-serif text-5xl lg:text-6xl leading-[1.05] tracking-tight text-foreground">
+          Je eigen onderneming starten,<br />
+          <span className="italic text-primary">eenvoudig en goed begeleid.</span>
+        </h1>
+        <p className="mt-6 text-lg text-muted-foreground max-w-lg mx-auto leading-relaxed">
+          Wij richten je besloten vennootschap op van A tot Z. Eén vast contactpersoon, een duidelijke prijs en alles geregeld in 8 tot 15 werkdagen — volledig online vanuit heel België.
+        </p>
+        <div className="mt-8 flex flex-wrap gap-3 justify-center">
+          <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6">
+            <a href="#start">
+              Start in 3 stappen <ArrowRight className="ml-2 h-4 w-4" />
+            </a>
+          </Button>
+          <Button asChild size="lg" variant="ghost" className="h-12 px-6 text-foreground hover:bg-transparent hover:text-primary">
+            <a href="#stappen">Bekijk hoe het werkt</a>
+          </Button>
         </div>
-        <div className="relative">
-          <div className="absolute -inset-4 bg-secondary/60 rounded-[2rem] -z-10 rotate-2" />
-          <img
-            src={heroImg}
-            alt="Adviseur die ondernemers persoonlijk begeleidt"
-            className="rounded-[1.75rem] shadow-2xl shadow-primary/10 object-cover w-full aspect-[4/5]"
-            width={1280}
-            height={1280}
-          />
-          <div className="absolute -bottom-6 -left-6 bg-card border border-border rounded-2xl shadow-lg p-4 max-w-[220px]">
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-              Laatste oprichting
-            </div>
-            <div className="mt-1 font-serif text-lg text-foreground">3 dagen geleden</div>
-          </div>
-        </div>
+        <ul className="mt-10 grid sm:grid-cols-2 gap-3 text-sm text-muted-foreground max-w-xl mx-auto text-left">
+          {["Transparante prijs, geen verrassingen", "100% digitaal, geen verplaatsing nodig", "Vast aanspreekpunt per e-mail & telefoon", "Begeleiding van A tot Z"].map((t) => (
+            <li key={t} className="flex items-start gap-2">
+              <Check className="h-4 w-4 text-primary mt-0.5 shrink-0" /> {t}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
@@ -158,7 +141,7 @@ function ThreeSteps() {
     {
       n: "02",
       title: "Wij regelen het papierwerk",
-      desc: "Financieel plan, statuten, notaris via volmacht en publicatie — alles in één traject.",
+      desc: "Financieel plan, statuten en publicatie — alles digitaal in één traject geregeld.",
     },
     {
       n: "03",
@@ -186,7 +169,7 @@ function ThreeSteps() {
         </div>
         <div className="mt-10 text-center">
           <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7">
-            <a href="#start">Start nu in 3 stappen <ArrowRight className="ml-2 h-4 w-4" /></a>
+            <a href="#start">Start nu <ArrowRight className="ml-2 h-4 w-4" /></a>
           </Button>
         </div>
       </div>
@@ -228,19 +211,108 @@ function WhyTrust() {
   );
 }
 
+function Werkwijze() {
+  const stappen = [
+    { n: "1", title: "Intakegesprek", desc: "We bespreken je plannen, doelen en situatie. Zo weten we precies wat je nodig hebt." },
+    { n: "2", title: "Documenten verzamelen", desc: "Je krijgt een duidelijke checklist. Wij begeleiden je stap voor stap bij het aanleveren." },
+    { n: "3", title: "Financieel plan opstellen", desc: "Onze experts maken een gedegen financieel plan dat voldoet aan alle wettelijke vereisten." },
+    { n: "4", title: "Statuten & oprichting", desc: "We stellen de statuten op en regelen de officiële oprichting volledig digitaal." },
+    { n: "5", title: "Publicatie & afronding", desc: "Publicatie in het Belgisch Staatsblad. Je besloten vennootschap is officieel actief." },
+  ];
+  return (
+    <section id="werkwijze" className="py-20 lg:py-28">
+      <div className="mx-auto max-w-4xl px-6">
+        <div className="max-w-2xl">
+          <span className="text-xs uppercase tracking-[0.2em] text-accent font-medium">Werkwijze</span>
+          <h2 className="mt-3 font-serif text-4xl lg:text-5xl text-foreground">
+            Onze aanpak, <span className="italic">van begin tot eind.</span>
+          </h2>
+          <p className="mt-4 text-muted-foreground">Een helder traject in vijf stappen. Jij weet altijd waar je staat.</p>
+        </div>
+        <ol className="mt-12 space-y-4">
+          {stappen.map((s) => (
+            <li key={s.n} className="flex gap-5 bg-card border border-border rounded-2xl p-6">
+              <div className="h-10 w-10 rounded-full bg-primary text-primary-foreground font-serif flex items-center justify-center shrink-0">
+                {s.n}
+              </div>
+              <div>
+                <h3 className="font-serif text-xl text-foreground">{s.title}</h3>
+                <p className="mt-1 text-muted-foreground leading-relaxed">{s.desc}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
+function Reviews() {
+  const reviews = [
+    {
+      name: "Lien D.",
+      role: "Oprichter, marketingbureau",
+      stars: 5,
+      text: "Alles geregeld zonder dat ik mij moest verplaatsen. Mijn vast contactpersoon was telkens snel bereikbaar — echt een verschil met andere kantoren.",
+    },
+    {
+      name: "Mathieu V.",
+      role: "Zelfstandig consultant",
+      stars: 5,
+      text: "Op 9 werkdagen stond mijn besloten vennootschap op poten. Vaste prijs vooraf, geen verrassingen achteraf. Aanrader.",
+    },
+    {
+      name: "Sofie B.",
+      role: "Eigenaar webshop",
+      stars: 5,
+      text: "Ik wist niets van statuten of een financieel plan. Ze legden alles rustig uit en namen het volledige papierwerk over.",
+    },
+  ];
+  return (
+    <section id="reviews" className="py-20 lg:py-28 bg-secondary/40 border-y border-border">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="max-w-2xl">
+          <span className="text-xs uppercase tracking-[0.2em] text-accent font-medium">Reviews</span>
+          <h2 className="mt-3 font-serif text-4xl lg:text-5xl text-foreground">
+            Wat ondernemers <span className="italic">over ons zeggen.</span>
+          </h2>
+          <p className="mt-4 text-muted-foreground">Echte ervaringen van mensen die we begeleidden bij de oprichting.</p>
+        </div>
+        <div className="mt-12 grid md:grid-cols-3 gap-6">
+          {reviews.map((r) => (
+            <div key={r.name} className="bg-card border border-border rounded-2xl p-7 flex flex-col">
+              <Quote className="h-6 w-6 text-primary/40" />
+              <div className="mt-3 flex gap-0.5">
+                {Array.from({ length: r.stars }).map((_, i) => (
+                  <Star key={i} className="h-4 w-4 fill-accent text-accent" />
+                ))}
+              </div>
+              <p className="mt-4 text-foreground leading-relaxed flex-1">"{r.text}"</p>
+              <div className="mt-6 pt-5 border-t border-border">
+                <div className="font-serif text-base text-foreground">{r.name}</div>
+                <div className="text-sm text-muted-foreground">{r.role}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Pricing() {
   const tiers = [
     {
       name: "Premium",
       timing: "Klaar in max. 15 werkdagen",
-      features: ["Volledig oprichtingstraject", "Notaris via volmacht", "Financieel plan", "Persoonlijke begeleiding"],
+      features: ["Volledig oprichtingstraject", "100% digitaal afgehandeld", "Financieel plan", "Persoonlijke begeleiding"],
       cta: "Kies Premium",
       highlight: false,
     },
     {
       name: "Ultimate",
       timing: "Klaar in max. 8 werkdagen",
-      features: ["Alles uit Premium", "Voorrangsbehandeling", "Snellere notarisafspraak", "Directe lijn met je adviseur"],
+      features: ["Alles uit Premium", "Voorrangsbehandeling", "Snellere doorlooptijd", "Directe lijn met je adviseur"],
       cta: "Kies Ultimate",
       highlight: true,
     },
@@ -314,12 +386,12 @@ function FAQ() {
       a: "Tussen 8 en 15 werkdagen, afhankelijk van het traject dat je kiest en hoe snel jij de gevraagde info aanlevert.",
     },
     {
-      q: "Moet ik fysiek naar de notaris?",
-      a: "Nee. We werken met volmacht — alles verloopt digitaal vanuit heel België.",
+      q: "Moet ik mij verplaatsen?",
+      a: "Nee. Alles verloopt 100% digitaal vanuit heel België — geen verplaatsing nodig.",
     },
     {
       q: "Wat zit er in de prijs?",
-      a: "Volledig oprichtingstraject, financieel plan, statuten, notaris en publicatie in het Belgisch Staatsblad. Geen verborgen kosten.",
+      a: "Volledig oprichtingstraject, financieel plan, statuten en publicatie in het Belgisch Staatsblad. Geen verborgen kosten.",
     },
     {
       q: "Wat als ik nog vragen heb tijdens het traject?",
@@ -362,18 +434,11 @@ function CTA() {
             <p className="mt-4 text-primary-foreground/80 max-w-lg mx-auto">
               Begin met 3 korte vragen. Binnen één werkdag horen we van elkaar.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3 justify-center">
-              <Button asChild size="lg" className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90 h-13 px-8">
-                <a href="/start">
-                  Start je BV in 3 stappen <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full h-13 px-8 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground hover:text-primary">
-                <a href="/checklist.pdf" target="_blank" rel="noopener noreferrer">
-                  Download checklist
-                </a>
-              </Button>
-            </div>
+            <Button asChild size="lg" className="mt-8 rounded-full bg-accent text-accent-foreground hover:bg-accent/90 h-13 px-8">
+              <a href="/start">
+                Start je BV in 3 stappen <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
             <p className="mt-4 text-xs text-primary-foreground/60">Geen verplaatsing nodig · Vaste prijs · Vast contactpersoon</p>
           </div>
         </div>
