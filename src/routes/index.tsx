@@ -38,7 +38,7 @@ function Index() {
 function WhatsAppBubble() {
   return (
     <a
-      href="https://wa.me/32000000000"
+      href="https://wa.me/32491167881"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat met ons via WhatsApp"
@@ -94,7 +94,7 @@ function Hero() {
               </a>
             </Button>
             <Button asChild size="lg" variant="outline" className="rounded-full h-12 px-6 border-foreground/20">
-              <a href="#stappen">Bekijk hoe het werkt</a>
+              <a href="/checklist.pdf" target="_blank" rel="noopener noreferrer">Download checklist</a>
             </Button>
           </div>
           <ul className="mt-8 grid sm:grid-cols-2 gap-3 text-sm text-muted-foreground">
@@ -362,11 +362,18 @@ function CTA() {
             <p className="mt-4 text-primary-foreground/80 max-w-lg mx-auto">
               Begin met 3 korte vragen. Binnen één werkdag horen we van elkaar.
             </p>
-            <Button asChild size="lg" className="mt-8 rounded-full bg-accent text-accent-foreground hover:bg-accent/90 h-13 px-8">
-              <a href="/start">
-                Start je BV in 3 stappen <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
+            <div className="mt-8 flex flex-wrap gap-3 justify-center">
+              <Button asChild size="lg" className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90 h-13 px-8">
+                <a href="/start">
+                  Start je BV in 3 stappen <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="rounded-full h-13 px-8 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground hover:text-primary">
+                <a href="/checklist.pdf" target="_blank" rel="noopener noreferrer">
+                  Download checklist
+                </a>
+              </Button>
+            </div>
             <p className="mt-4 text-xs text-primary-foreground/60">Geen verplaatsing nodig · Vaste prijs · Vast contactpersoon</p>
           </div>
         </div>
