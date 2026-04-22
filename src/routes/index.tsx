@@ -39,7 +39,7 @@ function Index() {
 function WhatsAppBubble() {
   return (
     <a
-      href="https://wa.me/32000000000"
+      href="https://wa.me/32491167881"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat met ons via WhatsApp"
@@ -101,8 +101,10 @@ function Hero() {
                   Start in 3 stappen <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
               </Button>
-              <Button asChild size="lg" variant="ghost" className="h-12 px-2 text-foreground hover:bg-transparent hover:text-primary underline underline-offset-4 decoration-foreground/30 hover:decoration-primary">
-                <a href="#stappen">Bekijk hoe het werkt</a>
+              <Button asChild size="lg" variant="outline" className="h-12 px-6 rounded-full border-foreground/30 hover:border-primary hover:text-primary">
+                <a href="/checklist.pdf" target="_blank" rel="noopener noreferrer">
+                  Download checklist
+                </a>
               </Button>
             </div>
           </div>
@@ -441,7 +443,10 @@ function CTA() {
         </div>
         <div className="lg:col-span-4 flex flex-col gap-4">
           <Button asChild size="lg" className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90 h-14 px-8 text-base">
-            <a href="/start">Start nu <ArrowRight className="ml-2 h-4 w-4" /></a>
+            <a href="#start">Start nu <ArrowRight className="ml-2 h-4 w-4" /></a>
+          </Button>
+          <Button asChild size="lg" variant="outline" className="rounded-full h-12 px-7 border-background/30 text-background hover:bg-background hover:text-foreground">
+            <a href="/checklist.pdf" target="_blank" rel="noopener noreferrer">Download checklist</a>
           </Button>
           <p className="text-xs uppercase tracking-[0.2em] text-background/50">
             Geen verplaatsing · Vaste prijs · Vast contactpersoon
