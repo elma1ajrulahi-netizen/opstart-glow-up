@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowUpRight, Check, MessageCircle, Star, Plus } from "lucide-react";
-import logoWordmark from "@/assets/logo-1-wordmark.png";
+import logoWordmark from "@/assets/logo-3-monogram.png";
 
 export const Route = createFileRoute("/")({
   component: Index,
