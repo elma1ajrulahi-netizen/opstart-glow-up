@@ -14,8 +14,6 @@ import {
   Download,
   Phone,
   Mail,
-  Eye,
-  EyeOff,
   Flame,
 } from "lucide-react";
 import logoWordmark from "@/assets/logo-1-wordmark.png";
@@ -111,7 +109,7 @@ function Hero() {
       <div className="mx-auto max-w-3xl px-6 pt-20 pb-16 lg:pt-28 lg:pb-24 text-center">
         <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
           <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-          BV oprichting meestal binnen 5 werkdagen
+          15+ jaar ervaring · 500+ ondernemers begeleid
         </span>
         <h1 className="mt-6 font-serif font-semibold text-5xl lg:text-6xl leading-[1.05] tracking-tight text-foreground">
           Je eigen onderneming starten,<br />
@@ -538,7 +536,7 @@ function Pricing() {
       highlight: true,
     },
   ];
-  const [revealed, setRevealed] = useState<Record<string, boolean>>({});
+  
   return (
     <section id="prijzen" className="py-20 lg:py-28 bg-secondary/40 border-y border-border">
       <div className="mx-auto max-w-6xl px-6">
@@ -553,7 +551,6 @@ function Pricing() {
         </div>
         <div className="mt-12 grid md:grid-cols-2 gap-6">
           {tiers.map((t) => {
-            const isRevealed = !!revealed[t.name];
             return (
               <div
                 key={t.name}
@@ -575,27 +572,14 @@ function Pricing() {
                   )}
                 </div>
                 <div className="mt-3 min-h-[3.25rem]">
-                  {isRevealed ? (
-                    <div className="flex items-baseline gap-2">
-                      <span className={"font-serif font-semibold text-4xl " + (t.highlight ? "text-accent" : "text-primary")}>
-                        {t.price}
-                      </span>
-                      <span className={"text-sm " + (t.highlight ? "text-primary-foreground/70" : "text-muted-foreground")}>
-                        {t.vat}
-                      </span>
-                    </div>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() => setRevealed((r) => ({ ...r, [t.name]: true }))}
-                      className={
-                        "inline-flex items-center gap-2 text-sm font-medium underline-offset-4 hover:underline " +
-                        (t.highlight ? "text-primary-foreground/90" : "text-primary")
-                      }
-                    >
-                      <Eye className="h-4 w-4" /> Toon prijs
-                    </button>
-                  )}
+                  <div className="flex items-baseline gap-2">
+                    <span className={"font-serif font-semibold text-4xl " + (t.highlight ? "text-accent" : "text-primary")}>
+                      {t.price}
+                    </span>
+                    <span className={"text-sm " + (t.highlight ? "text-primary-foreground/70" : "text-muted-foreground")}>
+                      {t.vat}
+                    </span>
+                  </div>
                 </div>
                 <p className={"mt-1 text-sm " + (t.highlight ? "text-primary-foreground/80" : "text-muted-foreground")}>
                   {t.timing} · {t.tagline}
@@ -620,18 +604,6 @@ function Pricing() {
                 >
                   <a href={`#contact?pakket=${t.name}`}>Vraag een vrijblijvend gesprek</a>
                 </Button>
-                {isRevealed && (
-                  <button
-                    type="button"
-                    onClick={() => setRevealed((r) => ({ ...r, [t.name]: false }))}
-                    className={
-                      "mt-3 inline-flex items-center gap-1.5 text-xs " +
-                      (t.highlight ? "text-primary-foreground/70 hover:text-primary-foreground" : "text-muted-foreground hover:text-foreground")
-                    }
-                  >
-                    <EyeOff className="h-3 w-3" /> Verberg prijs
-                  </button>
-                )}
               </div>
             );
           })}
