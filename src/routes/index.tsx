@@ -41,6 +41,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  // sections rendered below
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
