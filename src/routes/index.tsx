@@ -14,6 +14,9 @@ import {
   Download,
   Phone,
   Mail,
+  Eye,
+  EyeOff,
+  Flame,
 } from "lucide-react";
 import logoWordmark from "@/assets/logo-1-wordmark.png";
 
