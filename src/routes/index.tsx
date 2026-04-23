@@ -325,8 +325,8 @@ function GuidedStart() {
                 <p className="mt-4 text-primary-foreground/90 leading-relaxed">{recommendation.reason}</p>
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Button asChild size="lg" className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90 font-semibold">
-                    <a href="#start">
-                      Kies {recommendation.name} <ArrowRight className="ml-2 h-4 w-4" />
+                    <a href={`#contact?pakket=${recommendation.name}`}>
+                      Vraag een vrijblijvend gesprek <ArrowRight className="ml-2 h-4 w-4" />
                     </a>
                   </Button>
                   <Button
