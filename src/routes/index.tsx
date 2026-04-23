@@ -516,7 +516,6 @@ function Pricing() {
         "Aanvraag btw-nummer",
         "Oprichting binnen 15 werkdagen (max)",
       ],
-      cta: "Kies Premium",
       highlight: false,
     },
     {
@@ -535,75 +534,263 @@ function Pricing() {
         "UBO-registratie inbegrepen",
         "Oprichting binnen 8 werkdagen",
       ],
-      cta: "Kies Ultimate",
       highlight: true,
     },
   ];
+  const [revealed, setRevealed] = useState<Record<string, boolean>>({});
   return (
     <section id="prijzen" className="py-20 lg:py-28 bg-secondary/40 border-y border-border">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
           <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">Trajecten</span>
-          <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
+          <h2 className="mt-3 font-serif font-semibold text-4xl lg:text-5xl text-foreground tracking-tight">
             Twee duidelijke trajecten.
           </h2>
-          <p className="mt-4 text-muted-foreground">Kies wat past bij jouw timing. Geen verborgen kosten.</p>
+          <p className="mt-4 text-muted-foreground">
+            Kies het traject dat past bij jouw timing. De prijs wordt zichtbaar zodra je een traject bekijkt — geen verborgen kosten.
+          </p>
         </div>
         <div className="mt-12 grid md:grid-cols-2 gap-6">
-          {tiers.map((t) => (
-            <div
-              key={t.name}
-              className={
-                "rounded-3xl p-8 border " +
-                (t.highlight
-                  ? "bg-primary text-primary-foreground border-primary shadow-2xl shadow-primary/20"
-                  : "bg-card border-border")
-              }
-            >
-              <div className="flex items-center justify-between">
-                <h3 className={"font-serif font-bold text-3xl " + (t.highlight ? "text-primary-foreground" : "text-foreground")}>
-                  {t.name}
-                </h3>
-                {t.highlight && (
-                  <span className="inline-flex items-center gap-1 text-xs font-semibold bg-accent text-accent-foreground rounded-full px-2.5 py-1">
-                    <Sparkles className="h-3 w-3" /> Snelst
-                  </span>
-                )}
-              </div>
-              <div className="mt-3 flex items-baseline gap-2">
-                <span className={"font-serif font-bold text-4xl " + (t.highlight ? "text-accent" : "text-primary")}>
-                  {t.price}
-                </span>
-                <span className={"text-sm " + (t.highlight ? "text-primary-foreground/70" : "text-muted-foreground")}>
-                  {t.vat}
-                </span>
-              </div>
-              <p className={"mt-1 text-sm " + (t.highlight ? "text-primary-foreground/80" : "text-muted-foreground")}>
-                {t.timing} · {t.tagline}
-              </p>
-              <ul className="mt-6 space-y-3">
-                {t.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm">
-                    <Check className={"h-4 w-4 mt-0.5 shrink-0 " + (t.highlight ? "text-accent" : "text-primary")} />
-                    <span className={t.highlight ? "text-primary-foreground/90" : "text-foreground"}>{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <Button
-                asChild
-                size="lg"
+          {tiers.map((t) => {
+            const isRevealed = !!revealed[t.name];
+            return (
+              <div
+                key={t.name}
                 className={
-                  "mt-8 w-full rounded-full h-12 font-semibold " +
+                  "rounded-3xl p-8 border " +
                   (t.highlight
-                    ? "bg-accent text-accent-foreground hover:bg-accent/90"
-                    : "bg-primary text-primary-foreground hover:bg-primary/90")
+                    ? "bg-primary text-primary-foreground border-primary shadow-2xl shadow-primary/20"
+                    : "bg-card border-border")
                 }
               >
-                <a href="#start">{t.cta}</a>
+                <div className="flex items-center justify-between">
+                  <h3 className={"font-serif font-semibold text-3xl tracking-tight " + (t.highlight ? "text-primary-foreground" : "text-foreground")}>
+                    {t.name}
+                  </h3>
+                  {t.highlight && (
+                    <span className="inline-flex items-center gap-1 text-xs font-semibold bg-accent text-accent-foreground rounded-full px-2.5 py-1">
+                      <Sparkles className="h-3 w-3" /> Snelst
+                    </span>
+                  )}
+                </div>
+                <div className="mt-3 min-h-[3.25rem]">
+                  {isRevealed ? (
+                    <div className="flex items-baseline gap-2">
+                      <span className={"font-serif font-semibold text-4xl " + (t.highlight ? "text-accent" : "text-primary")}>
+                        {t.price}
+                      </span>
+                      <span className={"text-sm " + (t.highlight ? "text-primary-foreground/70" : "text-muted-foreground")}>
+                        {t.vat}
+                      </span>
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setRevealed((r) => ({ ...r, [t.name]: true }))}
+                      className={
+                        "inline-flex items-center gap-2 text-sm font-medium underline-offset-4 hover:underline " +
+                        (t.highlight ? "text-primary-foreground/90" : "text-primary")
+                      }
+                    >
+                      <Eye className="h-4 w-4" /> Toon prijs
+                    </button>
+                  )}
+                </div>
+                <p className={"mt-1 text-sm " + (t.highlight ? "text-primary-foreground/80" : "text-muted-foreground")}>
+                  {t.timing} · {t.tagline}
+                </p>
+                <ul className="mt-6 space-y-3">
+                  {t.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-sm">
+                      <Check className={"h-4 w-4 mt-0.5 shrink-0 " + (t.highlight ? "text-accent" : "text-primary")} />
+                      <span className={t.highlight ? "text-primary-foreground/90" : "text-foreground"}>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Button
+                  asChild
+                  size="lg"
+                  className={
+                    "mt-8 w-full rounded-full h-12 font-semibold " +
+                    (t.highlight
+                      ? "bg-accent text-accent-foreground hover:bg-accent/90"
+                      : "bg-primary text-primary-foreground hover:bg-primary/90")
+                  }
+                >
+                  <a href={`#contact?pakket=${t.name}`}>Vraag een vrijblijvend gesprek</a>
+                </Button>
+                {isRevealed && (
+                  <button
+                    type="button"
+                    onClick={() => setRevealed((r) => ({ ...r, [t.name]: false }))}
+                    className={
+                      "mt-3 inline-flex items-center gap-1.5 text-xs " +
+                      (t.highlight ? "text-primary-foreground/70 hover:text-primary-foreground" : "text-muted-foreground hover:text-foreground")
+                    }
+                  >
+                    <EyeOff className="h-3 w-3" /> Verberg prijs
+                  </button>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ContactForm() {
+  const [form, setForm] = useState({
+    voornaam: "",
+    achternaam: "",
+    email: "",
+    gsm: "",
+    wanneer: "",
+    activiteit: "",
+    structuur: "",
+    vraag: "",
+  });
+  const update = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
+    setForm((f) => ({ ...f, [k]: e.target.value }));
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = `Nieuwe aanvraag van ${form.voornaam} ${form.achternaam}`;
+    const body = [
+      `Voornaam: ${form.voornaam}`,
+      `Achternaam: ${form.achternaam}`,
+      `E-mail: ${form.email}`,
+      `Gsm: ${form.gsm}`,
+      `Wanneer wil je starten: ${form.wanneer}`,
+      `Activiteit: ${form.activiteit}`,
+      `Oprichting alleen of met vennoten: ${form.structuur}`,
+      "",
+      "Vraag:",
+      form.vraag,
+    ].join("\n");
+    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
+  const inputCls =
+    "mt-1 block w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40";
+
+  return (
+    <section id="contact" className="py-20 lg:py-28">
+      <div className="mx-auto max-w-6xl px-6 grid lg:grid-cols-[1.4fr_1fr] gap-10">
+        <div>
+          <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">Contact</span>
+          <h2 className="mt-3 font-serif font-semibold text-4xl lg:text-5xl text-foreground tracking-tight">
+            Start vandaag met <span className="italic">jouw BV</span>
+          </h2>
+          <p className="mt-4 text-muted-foreground">
+            Vul het formulier in en wij nemen snel contact op voor een vrijblijvend gesprek.
+          </p>
+
+          <form onSubmit={onSubmit} className="mt-8 bg-card border border-border rounded-3xl p-7 lg:p-8 space-y-5">
+            <div className="grid sm:grid-cols-2 gap-4">
+              <label className="block text-sm font-medium text-foreground">
+                Voornaam *
+                <input required maxLength={80} value={form.voornaam} onChange={update("voornaam")} placeholder="Jan" className={inputCls} />
+              </label>
+              <label className="block text-sm font-medium text-foreground">
+                Achternaam *
+                <input required maxLength={80} value={form.achternaam} onChange={update("achternaam")} placeholder="Janssens" className={inputCls} />
+              </label>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <label className="block text-sm font-medium text-foreground">
+                E-mail *
+                <input required type="email" maxLength={160} value={form.email} onChange={update("email")} placeholder="jan@bedrijf.be" className={inputCls} />
+              </label>
+              <label className="block text-sm font-medium text-foreground">
+                Gsm-nummer *
+                <input required type="tel" maxLength={30} value={form.gsm} onChange={update("gsm")} placeholder="04xx xx xx xx" className={inputCls} />
+              </label>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <label className="block text-sm font-medium text-foreground">
+                Wanneer wil je starten? *
+                <select required value={form.wanneer} onChange={update("wanneer")} className={inputCls}>
+                  <option value="">Selecteer</option>
+                  <option>Zo snel mogelijk</option>
+                  <option>Binnen 1 maand</option>
+                  <option>Binnen 3 maanden</option>
+                  <option>Geen haast</option>
+                </select>
+              </label>
+              <label className="block text-sm font-medium text-foreground">
+                Oprichting alleen of met vennoten *
+                <select required value={form.structuur} onChange={update("structuur")} className={inputCls}>
+                  <option value="">Selecteer</option>
+                  <option>Alleen</option>
+                  <option>Met vennoten</option>
+                </select>
+              </label>
+            </div>
+            <label className="block text-sm font-medium text-foreground">
+              Welke activiteit start je? *
+              <input required maxLength={200} value={form.activiteit} onChange={update("activiteit")} placeholder="bv. IT-consulting, horeca, e-commerce..." className={inputCls} />
+            </label>
+            <label className="block text-sm font-medium text-foreground">
+              Jouw vraag
+              <textarea rows={4} maxLength={1500} value={form.vraag} onChange={update("vraag")} placeholder="Waarmee kunnen we je helpen?" className={inputCls} />
+            </label>
+            <p className="text-xs text-muted-foreground">
+              Door dit formulier te versturen ga je akkoord met onze{" "}
+              <a href="https://opstartdesk.be/privacy.html" target="_blank" rel="noopener noreferrer" className="text-primary underline-offset-4 hover:underline">
+                privacyverklaring
+              </a>.
+            </p>
+            <Button type="submit" size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7 font-semibold">
+              Verstuur bericht <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </form>
+        </div>
+
+        <aside className="space-y-5">
+          <div className="bg-card border border-border rounded-2xl p-6">
+            <h3 className="font-serif font-semibold text-xl text-foreground tracking-tight">Snel contact</h3>
+            <p className="mt-2 text-sm text-muted-foreground">Wil je sneller schakelen? Stuur ons kort via WhatsApp of mail ons je vraag.</p>
+            <div className="mt-4 flex flex-col gap-2">
+              <Button asChild variant="outline" className="rounded-full justify-start font-semibold">
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                  <Phone className="mr-2 h-4 w-4" /> WhatsApp ons
+                </a>
+              </Button>
+              <Button asChild variant="outline" className="rounded-full justify-start font-semibold">
+                <a href={`mailto:${EMAIL}`}>
+                  <Mail className="mr-2 h-4 w-4" /> Mail ons
+                </a>
               </Button>
             </div>
-          ))}
-        </div>
+          </div>
+          <div className="bg-card border border-border rounded-2xl p-6">
+            <h3 className="font-serif font-semibold text-xl text-foreground tracking-tight">Gratis BV-checklist</h3>
+            <p className="mt-2 text-sm text-muted-foreground">Download onze starters-checklist en start meteen met de juiste documenten.</p>
+            <Button asChild className="mt-4 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold w-full">
+              <a href={CHECKLIST_URL} target="_blank" rel="noopener noreferrer">
+                <Download className="mr-2 h-4 w-4" /> Download checklist
+              </a>
+            </Button>
+          </div>
+          <div className="bg-secondary/60 border border-border rounded-2xl p-6">
+            <div className="text-sm font-semibold text-foreground">⚡ BV oprichting meestal binnen 5 werkdagen</div>
+            <h4 className="mt-3 font-serif font-semibold text-lg text-foreground tracking-tight">Waarom kiezen voor een BV</h4>
+            <ul className="mt-3 space-y-2 text-sm text-foreground">
+              {[
+                "Bescherming van je privévermogen",
+                "Fiscale optimalisatie mogelijk",
+                "Professionele uitstraling",
+                "Makkelijker samenwerken met partners",
+              ].map((x) => (
+                <li key={x} className="flex items-start gap-2">
+                  <Check className="h-4 w-4 text-primary mt-0.5 shrink-0" /> {x}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </aside>
       </div>
     </section>
   );
