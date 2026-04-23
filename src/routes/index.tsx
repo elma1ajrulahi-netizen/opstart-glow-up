@@ -48,10 +48,12 @@ function Index() {
       <TrustBar />
       <ThreeSteps />
       <GuidedStart />
+      <ScarcityStrip />
       <WhyTrust />
       <Werkwijze />
       <Reviews />
       <Pricing />
+      <ContactForm />
       <FAQ />
       <CTA />
       <Footer />
