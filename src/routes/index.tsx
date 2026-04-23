@@ -182,7 +182,7 @@ function TrustBar() {
       <div className="mx-auto max-w-6xl px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
         {items.map((i) => (
           <div key={i.k} className="text-center md:text-left">
-            <div className="font-serif font-bold text-3xl text-primary">{i.k}</div>
+            <div className="font-serif font-semibold text-3xl text-primary">{i.k}</div>
             <div className="text-sm text-muted-foreground mt-1">{i.v}</div>
           </div>
         ))}
@@ -202,15 +202,15 @@ function ThreeSteps() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
           <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">Hoe het werkt</span>
-          <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
+          <h2 className="mt-3 font-serif font-semibold text-4xl lg:text-5xl text-foreground tracking-tight">
             Drie stappen. <span className="italic font-semibold">Geen verrassingen.</span>
           </h2>
         </div>
         <div className="mt-12 grid md:grid-cols-3 gap-6">
           {steps.map((s) => (
             <div key={s.n} className="bg-card border border-border rounded-2xl p-7 hover:shadow-xl hover:shadow-primary/5 transition-shadow">
-              <div className="font-serif font-bold text-sm text-accent">{s.n}</div>
-              <h3 className="mt-3 font-serif font-bold text-2xl text-foreground">{s.title}</h3>
+              <div className="font-serif font-semibold text-sm text-accent">{s.n}</div>
+              <h3 className="mt-3 font-serif font-semibold text-2xl text-foreground">{s.title}</h3>
               <p className="mt-3 text-muted-foreground leading-relaxed">{s.desc}</p>
             </div>
           ))}
@@ -266,7 +266,7 @@ function GuidedStart() {
       <div className="mx-auto max-w-4xl px-6">
         <div className="max-w-2xl">
           <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">Guided start</span>
-          <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
+          <h2 className="mt-3 font-serif font-semibold text-4xl lg:text-5xl text-foreground tracking-tight">
             3 vragen, <span className="italic font-semibold">jouw ideale traject.</span>
           </h2>
           <p className="mt-4 text-muted-foreground">
@@ -316,7 +316,7 @@ function GuidedStart() {
                   Aanbevolen traject
                 </span>
                 <div className="mt-2 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                  <h3 className="font-serif font-bold text-3xl">{recommendation.name}</h3>
+                  <h3 className="font-serif font-semibold text-3xl">{recommendation.name}</h3>
                   <span className="font-serif font-semibold text-2xl text-accent">
                     {recommendation.price}
                   </span>
@@ -362,10 +362,10 @@ function QuizStep<T extends string>({
   return (
     <div>
       <div className="flex items-center gap-3">
-        <span className="h-8 w-8 rounded-full bg-primary/10 text-primary font-serif font-bold flex items-center justify-center text-sm">
+        <span className="h-8 w-8 rounded-full bg-primary/10 text-primary font-serif font-semibold flex items-center justify-center text-sm">
           {n}
         </span>
-        <h3 className="font-serif font-bold text-lg text-foreground">{question}</h3>
+        <h3 className="font-serif font-semibold text-lg text-foreground">{question}</h3>
       </div>
       <div className="mt-4 ml-11 flex flex-wrap gap-2">
         {options.map((o) => {
@@ -403,7 +403,7 @@ function WhyTrust() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
           <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">Waarom OpstartDesk</span>
-          <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
+          <h2 className="mt-3 font-serif font-semibold text-4xl lg:text-5xl text-foreground tracking-tight">
             Mensen kiezen ons omdat we <span className="italic font-semibold">persoonlijk blijven.</span>
           </h2>
         </div>
@@ -414,7 +414,7 @@ function WhyTrust() {
                 <Icon className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-serif font-bold text-xl text-foreground">{title}</h3>
+                <h3 className="font-serif font-semibold text-xl text-foreground">{title}</h3>
                 <p className="mt-1 text-muted-foreground text-sm leading-relaxed">{desc}</p>
               </div>
             </div>
@@ -437,7 +437,7 @@ function Werkwijze() {
       <div className="mx-auto max-w-4xl px-6">
         <div className="max-w-2xl">
           <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">Werkwijze</span>
-          <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
+          <h2 className="mt-3 font-serif font-semibold text-4xl lg:text-5xl text-foreground tracking-tight">
             Onze aanpak, <span className="italic font-semibold">van begin tot eind.</span>
           </h2>
           <p className="mt-4 text-muted-foreground">Een helder traject in vier stappen. Jij weet altijd waar je staat.</p>
@@ -445,11 +445,11 @@ function Werkwijze() {
         <ol className="mt-12 space-y-4">
           {stappen.map((s) => (
             <li key={s.n} className="flex gap-5 bg-card border border-border rounded-2xl p-6">
-              <div className="h-10 w-10 rounded-full bg-primary text-primary-foreground font-serif font-bold flex items-center justify-center shrink-0">
+              <div className="h-10 w-10 rounded-full bg-primary text-primary-foreground font-serif font-semibold flex items-center justify-center shrink-0">
                 {s.n}
               </div>
               <div>
-                <h3 className="font-serif font-bold text-xl text-foreground">{s.title}</h3>
+                <h3 className="font-serif font-semibold text-xl text-foreground">{s.title}</h3>
                 <p className="mt-1 text-muted-foreground leading-relaxed">{s.desc}</p>
               </div>
             </li>
@@ -472,7 +472,7 @@ function Reviews() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
           <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">Klantenervaring</span>
-          <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
+          <h2 className="mt-3 font-serif font-semibold text-4xl lg:text-5xl text-foreground tracking-tight">
             Wat klanten <span className="italic font-semibold">over ons zeggen.</span>
           </h2>
           <p className="mt-4 text-muted-foreground">Echte ervaringen van ondernemers die we begeleidden bij hun oprichting.</p>
@@ -488,7 +488,7 @@ function Reviews() {
               </div>
               <p className="mt-4 text-foreground leading-relaxed flex-1">"{r.text}"</p>
               <div className="mt-6 pt-5 border-t border-border">
-                <div className="font-serif font-bold text-base text-foreground">{r.name}</div>
+                <div className="font-serif font-semibold text-base text-foreground">{r.name}</div>
                 <div className="text-sm text-muted-foreground">{r.role}</div>
               </div>
             </div>
@@ -809,7 +809,7 @@ function FAQ() {
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
           <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">FAQ</span>
-          <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">Veelgestelde vragen</h2>
+          <h2 className="mt-3 font-serif font-semibold text-4xl lg:text-5xl text-foreground tracking-tight">Veelgestelde vragen</h2>
           <p className="mt-3 text-sm text-muted-foreground">
             Speciale situatie? Stuur gerust een{" "}
             <a className="text-primary underline-offset-4 hover:underline" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
@@ -820,7 +820,7 @@ function FAQ() {
         <div className="mt-10 space-y-3">
           {qs.map((item) => (
             <details key={item.q} className="group bg-card border border-border rounded-2xl p-6 open:shadow-md transition-shadow">
-              <summary className="cursor-pointer list-none flex items-center justify-between font-serif font-bold text-lg text-foreground">
+              <summary className="cursor-pointer list-none flex items-center justify-between font-serif font-semibold text-lg text-foreground">
                 {item.q}
                 <span className="ml-4 text-primary transition-transform group-open:rotate-45 text-2xl leading-none">+</span>
               </summary>
@@ -840,7 +840,7 @@ function CTA() {
         <div className="rounded-[2rem] bg-primary text-primary-foreground p-10 lg:p-16 text-center relative overflow-hidden">
           <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-accent/30 blur-3xl" />
           <div className="relative">
-            <h2 className="font-serif font-bold text-4xl lg:text-5xl text-primary-foreground tracking-tight">
+            <h2 className="font-serif font-semibold text-4xl lg:text-5xl text-primary-foreground tracking-tight">
               Klaar om te starten?
             </h2>
             <p className="mt-4 text-primary-foreground/80 max-w-lg mx-auto">
