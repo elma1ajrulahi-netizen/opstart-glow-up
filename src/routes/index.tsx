@@ -97,7 +97,7 @@ function Header() {
           <a href="#faq" className="hover:text-foreground transition-colors">FAQ</a>
         </nav>
         <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
-          <a href="#start">Start je BV</a>
+          <a href="#contact">Start je BV</a>
         </Button>
       </div>
     </header>
@@ -217,7 +217,7 @@ function ThreeSteps() {
         </div>
         <div className="mt-10 text-center">
           <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7 font-semibold">
-            <a href="#start">Start nu <ArrowRight className="ml-2 h-4 w-4" /></a>
+            <a href="#guided-start">Start nu <ArrowRight className="ml-2 h-4 w-4" /></a>
           </Button>
         </div>
       </div>
