@@ -111,7 +111,7 @@ function Hero() {
       <div className="mx-auto max-w-3xl px-6 pt-20 pb-16 lg:pt-28 lg:pb-24 text-center">
         <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
           <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-          BV oprichting meestal binnen 5 werkdagen
+          15+ jaar ervaring · 500+ ondernemers begeleid
         </span>
         <h1 className="mt-6 font-serif font-semibold text-5xl lg:text-6xl leading-[1.05] tracking-tight text-foreground">
           Je eigen onderneming starten,<br />
@@ -575,27 +575,14 @@ function Pricing() {
                   )}
                 </div>
                 <div className="mt-3 min-h-[3.25rem]">
-                  {isRevealed ? (
-                    <div className="flex items-baseline gap-2">
-                      <span className={"font-serif font-semibold text-4xl " + (t.highlight ? "text-accent" : "text-primary")}>
-                        {t.price}
-                      </span>
-                      <span className={"text-sm " + (t.highlight ? "text-primary-foreground/70" : "text-muted-foreground")}>
-                        {t.vat}
-                      </span>
-                    </div>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() => setRevealed((r) => ({ ...r, [t.name]: true }))}
-                      className={
-                        "inline-flex items-center gap-2 text-sm font-medium underline-offset-4 hover:underline " +
-                        (t.highlight ? "text-primary-foreground/90" : "text-primary")
-                      }
-                    >
-                      <Eye className="h-4 w-4" /> Toon prijs
-                    </button>
-                  )}
+                  <div className="flex items-baseline gap-2">
+                    <span className={"font-serif font-semibold text-4xl " + (t.highlight ? "text-accent" : "text-primary")}>
+                      {t.price}
+                    </span>
+                    <span className={"text-sm " + (t.highlight ? "text-primary-foreground/70" : "text-muted-foreground")}>
+                      {t.vat}
+                    </span>
+                  </div>
                 </div>
                 <p className={"mt-1 text-sm " + (t.highlight ? "text-primary-foreground/80" : "text-muted-foreground")}>
                   {t.timing} · {t.tagline}
@@ -620,18 +607,6 @@ function Pricing() {
                 >
                   <a href={`#contact?pakket=${t.name}`}>Vraag een vrijblijvend gesprek</a>
                 </Button>
-                {isRevealed && (
-                  <button
-                    type="button"
-                    onClick={() => setRevealed((r) => ({ ...r, [t.name]: false }))}
-                    className={
-                      "mt-3 inline-flex items-center gap-1.5 text-xs " +
-                      (t.highlight ? "text-primary-foreground/70 hover:text-primary-foreground" : "text-muted-foreground hover:text-foreground")
-                    }
-                  >
-                    <EyeOff className="h-3 w-3" /> Verberg prijs
-                  </button>
-                )}
               </div>
             );
           })}
