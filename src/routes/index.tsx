@@ -14,8 +14,6 @@ import {
   Download,
   Phone,
   Mail,
-  Eye,
-  EyeOff,
   Flame,
 } from "lucide-react";
 import logoWordmark from "@/assets/logo-1-wordmark.png";
@@ -538,7 +536,7 @@ function Pricing() {
       highlight: true,
     },
   ];
-  const [revealed, setRevealed] = useState<Record<string, boolean>>({});
+  
   return (
     <section id="prijzen" className="py-20 lg:py-28 bg-secondary/40 border-y border-border">
       <div className="mx-auto max-w-6xl px-6">
@@ -553,7 +551,6 @@ function Pricing() {
         </div>
         <div className="mt-12 grid md:grid-cols-2 gap-6">
           {tiers.map((t) => {
-            const isRevealed = !!revealed[t.name];
             return (
               <div
                 key={t.name}
