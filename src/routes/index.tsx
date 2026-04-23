@@ -110,18 +110,18 @@ function Hero() {
       <div className="mx-auto max-w-3xl px-6 pt-20 pb-16 lg:pt-28 lg:pb-24 text-center">
         <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
           <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-          Laatste oprichting · 3 dagen geleden — nog 2 plaatsen vrij deze week
+          BV oprichting meestal binnen 5 werkdagen
         </span>
-        <h1 className="mt-6 font-serif font-bold text-5xl lg:text-6xl leading-[1.05] tracking-tight text-foreground">
+        <h1 className="mt-6 font-serif font-semibold text-5xl lg:text-6xl leading-[1.05] tracking-tight text-foreground">
           Je eigen onderneming starten,<br />
-          <span className="italic font-semibold text-primary">eenvoudig en goed begeleid.</span>
+          <span className="italic font-medium text-primary">eenvoudig en goed begeleid.</span>
         </h1>
         <p className="mt-6 text-lg text-muted-foreground max-w-lg mx-auto leading-relaxed">
           Wij richten je besloten vennootschap op van A tot Z. Eén vast contactpersoon, een duidelijke prijs en alles geregeld in 8 tot 15 werkdagen — volledig online vanuit heel België.
         </p>
         <div className="mt-8 flex flex-wrap gap-3 justify-center">
           <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6 font-semibold">
-            <a href="#start">
+            <a href="#guided-start">
               Start in 3 stappen <ArrowRight className="ml-2 h-4 w-4" />
             </a>
           </Button>
@@ -138,6 +138,33 @@ function Hero() {
             </li>
           ))}
         </ul>
+      </div>
+    </section>
+  );
+}
+
+function ScarcityStrip() {
+  return (
+    <section aria-label="Beschikbaarheid" className="py-6">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-accent/5 px-5 py-4">
+          <div className="flex items-center gap-3">
+            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-accent/15 text-accent">
+              <Flame className="h-4 w-4" />
+            </span>
+            <div>
+              <div className="font-serif font-semibold text-base text-foreground tracking-tight">
+                Nog 2 plaatsen vrij deze week
+              </div>
+              <div className="text-sm text-muted-foreground">
+                Laatste oprichting · 3 dagen geleden — boek tijdig je kennismaking.
+              </div>
+            </div>
+          </div>
+          <Button asChild size="sm" variant="outline" className="rounded-full border-accent/50 text-accent hover:bg-accent hover:text-accent-foreground font-semibold">
+            <a href="#contact">Reserveer een gesprek</a>
+          </Button>
+        </div>
       </div>
     </section>
   );
