@@ -193,7 +193,7 @@ function TrustBar() {
 function ThreeSteps() {
   const steps = [
     { n: "01", title: "Vertel ons over je plan", desc: "Beantwoord een korte vragenlijst online. We weten meteen wat je nodig hebt." },
-    { n: "02", title: "Wij regelen het papierwerk", desc: "Financieel plan, statuten en publicatie — alles digitaal in één traject geregeld." },
+    { n: "02", title: "Wij regelen de administratie", desc: "Financieel plan, statuten en publicatie — alles digitaal in één traject geregeld." },
     { n: "03", title: "Je BV is klaar", desc: "Tussen 8 en 15 werkdagen later ben je officieel ondernemer. Klaar om te starten." },
   ];
   return (
@@ -536,74 +536,102 @@ function Pricing() {
       highlight: true,
     },
   ];
-  
+
+  const [revealed, setRevealed] = useState<Record<string, boolean>>({});
+
   return (
     <section id="prijzen" className="py-20 lg:py-28 bg-secondary/40 border-y border-border">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
           <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">Trajecten</span>
-          <h2 className="mt-3 font-serif font-semibold text-4xl lg:text-5xl text-foreground tracking-tight">
+          <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
             Twee duidelijke trajecten.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Kies het traject dat past bij jouw timing. De prijs wordt zichtbaar zodra je een traject bekijkt — geen verborgen kosten.
+            Klik op "Bekijk prijs" om de prijs en de inhoud van het traject te zien — geen verborgen kosten.
           </p>
         </div>
         <div className="mt-12 grid md:grid-cols-2 gap-6">
           {tiers.map((t) => {
+            const isOpen = !!revealed[t.name];
             return (
               <div
                 key={t.name}
                 className={
-                  "rounded-3xl p-8 border " +
+                  "rounded-3xl p-8 border transition-shadow " +
                   (t.highlight
-                    ? "bg-primary text-primary-foreground border-primary shadow-2xl shadow-primary/20"
+                    ? "bg-card border-accent/40 shadow-2xl shadow-accent/10"
                     : "bg-card border-border")
                 }
               >
                 <div className="flex items-center justify-between">
-                  <h3 className={"font-serif font-semibold text-3xl tracking-tight " + (t.highlight ? "text-primary-foreground" : "text-foreground")}>
-                    {t.name}
+                  <h3 className="font-serif font-bold text-3xl tracking-tight">
+                    {t.highlight ? (
+                      <span style={{ color: "var(--gold)" }}>{t.name}</span>
+                    ) : (
+                      <span className="text-foreground">{t.name}</span>
+                    )}
                   </h3>
                   {t.highlight && (
-                    <span className="inline-flex items-center gap-1 text-xs font-semibold bg-accent text-accent-foreground rounded-full px-2.5 py-1">
+                    <span
+                      className="inline-flex items-center gap-1 text-xs font-semibold rounded-full px-2.5 py-1"
+                      style={{ background: "var(--gold)", color: "var(--accent-foreground)" }}
+                    >
                       <Sparkles className="h-3 w-3" /> Snelst
                     </span>
                   )}
                 </div>
-                <div className="mt-3 min-h-[3.25rem]">
-                  <div className="flex items-baseline gap-2">
-                    <span className={"font-serif font-semibold text-4xl " + (t.highlight ? "text-accent" : "text-primary")}>
-                      {t.price}
-                    </span>
-                    <span className={"text-sm " + (t.highlight ? "text-primary-foreground/70" : "text-muted-foreground")}>
-                      {t.vat}
-                    </span>
-                  </div>
-                </div>
-                <p className={"mt-1 text-sm " + (t.highlight ? "text-primary-foreground/80" : "text-muted-foreground")}>
+                <p className="mt-2 text-sm text-muted-foreground">
                   {t.timing} · {t.tagline}
                 </p>
-                <ul className="mt-6 space-y-3">
-                  {t.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-sm">
-                      <Check className={"h-4 w-4 mt-0.5 shrink-0 " + (t.highlight ? "text-accent" : "text-primary")} />
-                      <span className={t.highlight ? "text-primary-foreground/90" : "text-foreground"}>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  asChild
-                  size="lg"
-                  className={
-                    "mt-8 w-full rounded-full h-12 font-semibold " +
-                    (t.highlight
-                      ? "bg-accent text-accent-foreground hover:bg-accent/90"
-                      : "bg-primary text-primary-foreground hover:bg-primary/90")
-                  }
-                >
-                  <a href={`#contact?pakket=${t.name}`}>Vraag een vrijblijvend gesprek</a>
-                </Button>
+
+                {isOpen ? (
+                  <>
+                    <div className="mt-5 flex items-baseline gap-2">
+                      <span
+                        className={"font-serif font-bold text-4xl " + (t.highlight ? "" : "text-primary")}
+                        style={t.highlight ? { color: "var(--gold)" } : undefined}
+                      >
+                        {t.price}
+                      </span>
+                      <span className="text-sm text-muted-foreground">{t.vat}</span>
+                    </div>
+                    <ul className="mt-6 space-y-3">
+                      {t.features.map((f) => (
+                        <li key={f} className="flex items-start gap-2 text-sm">
+                          <Check
+                            className={"h-4 w-4 mt-0.5 shrink-0 " + (t.highlight ? "" : "text-primary")}
+                            style={t.highlight ? { color: "var(--gold)" } : undefined}
+                          />
+                          <span className="text-foreground">{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  <div className="mt-6 rounded-2xl border border-dashed border-border bg-background/30 px-5 py-6 text-sm text-muted-foreground">
+                    Prijs en inhoud van dit traject zijn verborgen. Klik op <span className="text-foreground font-semibold">Bekijk prijs</span> om alles te tonen.
+                  </div>
+                )}
+
+                <div className="mt-8 grid sm:grid-cols-2 gap-3">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="rounded-full h-12 font-semibold bg-primary text-primary-foreground hover:bg-primary/90"
+                  >
+                    <a href={`#contact?pakket=${t.name}`}>Vraag een vrijblijvend gesprek</a>
+                  </Button>
+                  <Button
+                    type="button"
+                    size="lg"
+                    variant="outline"
+                    onClick={() => setRevealed((r) => ({ ...r, [t.name]: !r[t.name] }))}
+                    className="rounded-full h-12 font-semibold border-border hover:bg-secondary"
+                  >
+                    {isOpen ? "Verberg prijs" : "Bekijk prijs"}
+                  </Button>
+                </div>
               </div>
             );
           })}
