@@ -84,9 +84,9 @@ function WhatsAppBubble() {
 function Header() {
   return (
     <header className="border-b border-border/60 bg-background/80 backdrop-blur sticky top-0 z-40">
-      <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
+      <div className="mx-auto max-w-6xl px-6 h-20 md:h-24 flex items-center justify-between">
         <a href="#top" className="flex items-center gap-2">
-          <img src={logoWordmark} alt="OpstartBV" className="h-8 w-auto" />
+          <img src={logoWordmark} alt="OpstartBV" className="h-14 md:h-16 w-auto" />
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
           <a href="#stappen" className="hover:text-foreground transition-colors">Hoe het werkt</a>
@@ -113,7 +113,7 @@ function Hero() {
             15+ jaar ervaring · 500+ ondernemers begeleid
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
-            <Globe className="h-3.5 w-3.5 text-accent" /> Wereldwijd beschikbaar
+            <Globe className="h-3.5 w-3.5 text-accent" /> Bereikbaar in heel België
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
             <Laptop className="h-3.5 w-3.5 text-accent" /> 100% digitaal
@@ -787,17 +787,17 @@ function CTA() {
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Button asChild size="lg" className="rounded-full bg-[#25D366] text-white hover:bg-[#1ebe5a] h-14 px-8 font-semibold text-base">
-                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="Open WhatsApp">
-                  <WhatsAppIcon className="mr-2 h-5 w-5" /> Chat via WhatsApp
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="Vraag een vrijblijvend gesprek via WhatsApp">
+                  <WhatsAppIcon className="mr-2 h-5 w-5" /> Vraag een vrijblijvend gesprek
                 </a>
               </Button>
               <Button asChild size="lg" variant="outline" className="rounded-full h-14 px-7 font-semibold border-border bg-transparent text-foreground hover:bg-secondary">
                 <a href={`mailto:${EMAIL}`}>
-                  <Mail className="mr-2 h-4 w-4" /> {EMAIL}
+                  <Mail className="mr-2 h-4 w-4" /> Mail ons
                 </a>
               </Button>
             </div>
-            <p className="mt-4 text-xs text-muted-foreground">100% digitaal · Wereldwijd · Vast contactpersoon</p>
+            <p className="mt-4 text-xs text-muted-foreground">100% digitaal · Bereikbaar in heel België · Vast contactpersoon</p>
           </div>
         </div>
       </div>
