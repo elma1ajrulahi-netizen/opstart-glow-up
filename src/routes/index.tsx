@@ -589,9 +589,8 @@ function Pricing() {
                   <>
                     <div className="mt-5 flex items-baseline gap-2">
                       <span
-                        className="font-serif font-bold text-4xl"
+                        className={"font-serif font-bold text-4xl " + (t.highlight ? "" : "text-primary")}
                         style={t.highlight ? { color: "var(--gold)" } : undefined}
-                        {...(!t.highlight && { className: "font-serif font-bold text-4xl text-primary" } as any)}
                       >
                         {t.price}
                       </span>
@@ -601,9 +600,8 @@ function Pricing() {
                       {t.features.map((f) => (
                         <li key={f} className="flex items-start gap-2 text-sm">
                           <Check
-                            className="h-4 w-4 mt-0.5 shrink-0"
+                            className={"h-4 w-4 mt-0.5 shrink-0 " + (t.highlight ? "" : "text-primary")}
                             style={t.highlight ? { color: "var(--gold)" } : undefined}
-                            {...(!t.highlight && { className: "h-4 w-4 mt-0.5 shrink-0 text-primary" } as any)}
                           />
                           <span className="text-foreground">{f}</span>
                         </li>
