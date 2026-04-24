@@ -642,6 +642,8 @@ function Pricing() {
     </section>
   );
 }
+
+function ContactForm() {
   const [form, setForm] = useState({
     voornaam: "",
     achternaam: "",
