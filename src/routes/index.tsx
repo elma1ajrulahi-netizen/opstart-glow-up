@@ -193,7 +193,7 @@ function TrustBar() {
 function ThreeSteps() {
   const steps = [
     { n: "01", title: "Vertel ons over je plan", desc: "Beantwoord een korte vragenlijst online. We weten meteen wat je nodig hebt." },
-    { n: "02", title: "Wij regelen het papierwerk", desc: "Financieel plan, statuten en publicatie — alles digitaal in één traject geregeld." },
+    { n: "02", title: "Wij regelen de administratie", desc: "Financieel plan, statuten en publicatie — alles digitaal in één traject geregeld." },
     { n: "03", title: "Je BV is klaar", desc: "Tussen 8 en 15 werkdagen later ben je officieel ondernemer. Klaar om te starten." },
   ];
   return (
