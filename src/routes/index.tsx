@@ -84,7 +84,7 @@ function WhatsAppBubble() {
 function Header() {
   return (
     <header className="border-b border-border/60 bg-background/80 backdrop-blur sticky top-0 z-40">
-      <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
+      <div className="mx-auto max-w-6xl px-6 h-20 md:h-24 flex items-center justify-between">
         <a href="#top" className="flex items-center gap-2">
           <img src={logoWordmark} alt="OpstartBV" className="h-14 md:h-16 w-auto" />
         </a>
