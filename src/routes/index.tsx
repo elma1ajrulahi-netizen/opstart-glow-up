@@ -787,17 +787,17 @@ function CTA() {
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Button asChild size="lg" className="rounded-full bg-[#25D366] text-white hover:bg-[#1ebe5a] h-14 px-8 font-semibold text-base">
-                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="Open WhatsApp">
-                  <WhatsAppIcon className="mr-2 h-5 w-5" /> Chat via WhatsApp
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="Vraag een vrijblijvend gesprek via WhatsApp">
+                  <WhatsAppIcon className="mr-2 h-5 w-5" /> Vraag een vrijblijvend gesprek
                 </a>
               </Button>
               <Button asChild size="lg" variant="outline" className="rounded-full h-14 px-7 font-semibold border-border bg-transparent text-foreground hover:bg-secondary">
                 <a href={`mailto:${EMAIL}`}>
-                  <Mail className="mr-2 h-4 w-4" /> {EMAIL}
+                  <Mail className="mr-2 h-4 w-4" /> Mail ons
                 </a>
               </Button>
             </div>
-            <p className="mt-4 text-xs text-muted-foreground">100% digitaal · Wereldwijd · Vast contactpersoon</p>
+            <p className="mt-4 text-xs text-muted-foreground">100% digitaal · Bereikbaar in heel België · Vast contactpersoon</p>
           </div>
         </div>
       </div>
