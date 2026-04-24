@@ -46,6 +46,7 @@
   --color-sage: var(--sage);
   --color-terracotta: var(--terracotta);
   --color-ink: var(--ink);
+  --color-gold: var(--gold);
 }
 
 :root {
