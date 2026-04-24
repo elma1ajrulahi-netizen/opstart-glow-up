@@ -113,7 +113,7 @@ function Hero() {
             15+ jaar ervaring · 500+ ondernemers begeleid
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
-            <Globe className="h-3.5 w-3.5 text-accent" /> Wereldwijd beschikbaar
+            <Globe className="h-3.5 w-3.5 text-accent" /> Bereikbaar in heel België
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
             <Laptop className="h-3.5 w-3.5 text-accent" /> 100% digitaal
