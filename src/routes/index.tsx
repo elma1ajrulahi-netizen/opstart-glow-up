@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { useMemo, useState } from "react";
 import {
@@ -16,8 +16,10 @@ import {
   Flame,
   Globe,
   Laptop,
+  ChevronDown,
 } from "lucide-react";
 import logoWordmark from "@/assets/logo-opstartbv.png";
+import { LANGS, useT, type Lang } from "@/i18n/LanguageContext";
 
 const WHATSAPP_URL = "https://wa.me/32491167881";
 const EMAIL = "info@opstartbv.be";
@@ -32,7 +34,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Eén vast contactpersoon, één duidelijke aanpak en je besloten vennootschap in 8 tot 15 werkdagen opgericht. 100% digitaal, wereldwijd beschikbaar.",
+          "Eén vast contactpersoon, één duidelijke aanpak en je besloten vennootschap in 8 tot 15 werkdagen opgericht. 100% digitaal, bereikbaar in heel België.",
       },
     ],
   }),
@@ -73,7 +75,7 @@ function WhatsAppBubble() {
       href={WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Chat met ons via WhatsApp"
+      aria-label="WhatsApp"
       className="fixed bottom-6 right-6 z-50 inline-flex items-center justify-center h-14 w-14 rounded-full bg-[#25D366] text-white shadow-xl shadow-black/25 hover:scale-110 transition-transform"
     >
       <WhatsAppIcon className="h-7 w-7" />
@@ -81,72 +83,115 @@ function WhatsAppBubble() {
   );
 }
 
+function LanguageSwitcher() {
+  const { lang, setLang, t } = useT();
+  const [open, setOpen] = useState(false);
+  const current = LANGS.find((l) => l.code === lang) ?? LANGS[0];
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        onBlur={() => setTimeout(() => setOpen(false), 150)}
+        className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-secondary transition-colors"
+        aria-label={t("lang.label")}
+      >
+        <span className="text-base leading-none">{current.flag}</span>
+        <span>{current.label}</span>
+        <ChevronDown className="h-3.5 w-3.5 opacity-70" />
+      </button>
+      {open && (
+        <div className="absolute right-0 top-full mt-1 z-50 min-w-[7rem] rounded-xl border border-border bg-card shadow-xl overflow-hidden">
+          {LANGS.map((l) => (
+            <button
+              key={l.code}
+              type="button"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                setLang(l.code as Lang);
+                setOpen(false);
+              }}
+              className={
+                "flex w-full items-center gap-2 px-3 py-2 text-sm hover:bg-secondary transition-colors " +
+                (l.code === lang ? "text-accent font-semibold" : "text-foreground")
+              }
+            >
+              <span className="text-base">{l.flag}</span>
+              <span>{l.label}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function Header() {
+  const { t } = useT();
   return (
     <header className="border-b border-border/60 bg-background/80 backdrop-blur sticky top-0 z-40">
-      <div className="mx-auto max-w-6xl px-6 h-20 md:h-24 flex items-center justify-between">
-        <a href="#top" className="flex items-center gap-2">
-          <img src={logoWordmark} alt="OpstartBV" className="h-14 md:h-16 w-auto" />
+      <div className="mx-auto max-w-6xl px-6 h-24 md:h-28 flex items-center justify-between gap-4">
+        <a href="#top" className="flex items-center gap-2 shrink-0">
+          <img src={logoWordmark} alt="OpstartBV" className="h-16 md:h-20 w-auto drop-shadow-sm" />
         </a>
-        <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-          <a href="#stappen" className="hover:text-foreground transition-colors">Hoe het werkt</a>
-          <a href="#guided-start" className="hover:text-foreground transition-colors">Vind je traject</a>
-          <a href="#werkwijze" className="hover:text-foreground transition-colors">Werkwijze</a>
-          <a href="#waarom" className="hover:text-foreground transition-colors">Waarom ons</a>
-          <a href="#faq" className="hover:text-foreground transition-colors">FAQ</a>
+        <nav className="hidden lg:flex items-center gap-7 text-sm text-muted-foreground">
+          <a href="#stappen" className="hover:text-foreground transition-colors">{t("nav.how")}</a>
+          <a href="#guided-start" className="hover:text-foreground transition-colors">{t("nav.find")}</a>
+          <a href="#werkwijze" className="hover:text-foreground transition-colors">{t("nav.method")}</a>
+          <a href="#waarom" className="hover:text-foreground transition-colors">{t("nav.why")}</a>
+          <a href="#faq" className="hover:text-foreground transition-colors">{t("nav.faq")}</a>
         </nav>
-        <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
-          <a href={CONTACT_HASH}>Start je BV</a>
-        </Button>
+        <div className="flex items-center gap-2">
+          <LanguageSwitcher />
+          <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
+            <a href={CONTACT_HASH}>{t("nav.cta")}</a>
+          </Button>
+        </div>
       </div>
     </header>
   );
 }
 
 function Hero() {
+  const { t } = useT();
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="mx-auto max-w-3xl px-6 pt-20 pb-16 lg:pt-28 lg:pb-24 text-center">
+      <div className="mx-auto max-w-3xl px-6 pt-12 pb-12 lg:pt-16 lg:pb-16 text-center">
         <div className="flex flex-wrap items-center justify-center gap-2">
           <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
             <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-            15+ jaar ervaring · 500+ ondernemers begeleid
+            {t("hero.badge.exp")}
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
-            <Globe className="h-3.5 w-3.5 text-accent" /> Bereikbaar in heel België
+            <Globe className="h-3.5 w-3.5 text-accent" /> {t("hero.badge.belgium")}
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
-            <Laptop className="h-3.5 w-3.5 text-accent" /> 100% digitaal
+            <Laptop className="h-3.5 w-3.5 text-accent" /> {t("hero.badge.digital")}
           </span>
         </div>
-        <h1 className="mt-6 font-serif font-bold text-5xl lg:text-6xl leading-[1.05] tracking-tight text-foreground">
-          Je eigen onderneming starten,<br />
-          <span className="text-accent">eenvoudig en goed begeleid.</span>
+        <h1 className="mt-5 font-serif font-bold text-4xl lg:text-6xl leading-[1.05] tracking-tight text-foreground">
+          {t("hero.title.1")}<br />
+          <span className="text-accent">{t("hero.title.2")}</span>
         </h1>
-        <p className="mt-6 text-lg text-muted-foreground max-w-lg mx-auto leading-relaxed">
-          Wij richten je besloten vennootschap op van A tot Z. Eén vast contactpersoon, een duidelijke aanpak en alles geregeld in 8 tot 15 werkdagen, volledig online.
+        <p className="mt-5 text-base lg:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
+          {t("hero.sub")}
         </p>
-        <div className="mt-8 flex flex-wrap gap-3 justify-center">
+        <div className="mt-7 flex flex-wrap gap-3 justify-center">
           <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6 font-semibold">
             <a href="#guided-start">
-              Start in 3 stappen <ArrowRight className="ml-2 h-4 w-4" />
+              {t("hero.cta.start")} <ArrowRight className="ml-2 h-4 w-4" />
             </a>
           </Button>
           <Button asChild size="lg" variant="outline" className="rounded-full h-12 px-6 font-semibold border-border bg-transparent text-foreground hover:bg-secondary">
             <a href={CHECKLIST_URL} target="_blank" rel="noopener noreferrer">
-              <Download className="mr-2 h-4 w-4" /> Download checklist
+              <Download className="mr-2 h-4 w-4" /> {t("hero.cta.checklist")}
             </a>
           </Button>
         </div>
-        <ul className="mt-10 grid sm:grid-cols-2 gap-3 text-sm text-muted-foreground max-w-xl mx-auto text-left">
-          {[
-            "Transparante aanpak van begin tot eind",
-            "100% digitaal, wereldwijd",
-            "Vast aanspreekpunt via WhatsApp & e-mail",
-            "Begeleiding van A tot Z",
-          ].map((t) => (
-            <li key={t} className="flex items-start gap-2">
-              <Check className="h-4 w-4 text-accent mt-0.5 shrink-0" /> {t}
+        <ul className="mt-8 grid sm:grid-cols-2 gap-2.5 text-sm text-muted-foreground max-w-xl mx-auto text-left">
+          {["hero.bullet.1", "hero.bullet.2", "hero.bullet.3", "hero.bullet.4"].map((k) => (
+            <li key={k} className="flex items-start gap-2">
+              <Check className="h-4 w-4 text-accent mt-0.5 shrink-0" /> {t(k)}
             </li>
           ))}
         </ul>
@@ -156,8 +201,9 @@ function Hero() {
 }
 
 function ScarcityStrip() {
+  const { t } = useT();
   return (
-    <section aria-label="Beschikbaarheid" className="py-6">
+    <section aria-label="Beschikbaarheid" className="py-4">
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-accent/10 px-5 py-4">
           <div className="flex items-center gap-3">
@@ -166,15 +212,13 @@ function ScarcityStrip() {
             </span>
             <div>
               <div className="font-serif font-bold text-base text-foreground tracking-tight">
-                Nog 2 plaatsen vrij deze week
+                {t("scarcity.title")}
               </div>
-              <div className="text-sm text-muted-foreground">
-                Laatste oprichting · 3 dagen geleden. Boek tijdig je kennismaking.
-              </div>
+              <div className="text-sm text-muted-foreground">{t("scarcity.sub")}</div>
             </div>
           </div>
           <Button asChild size="sm" className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90 font-semibold">
-            <a href={CONTACT_HASH}>Reserveer een gesprek</a>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">{t("scarcity.cta")}</a>
           </Button>
         </div>
       </div>
@@ -183,15 +227,16 @@ function ScarcityStrip() {
 }
 
 function TrustBar() {
+  const { t } = useT();
   const items = [
-    { k: "15+", v: "jaar ervaring" },
-    { k: "500+", v: "ondernemers begeleid" },
-    { k: "100%", v: "digitaal traject" },
-    { k: "8 dgn", v: "snelste oprichting" },
+    { k: "15+", v: t("trust.years") },
+    { k: "500+", v: t("trust.entrepreneurs") },
+    { k: "100%", v: t("trust.digital") },
+    { k: "8 dgn", v: t("trust.fastest") },
   ];
   return (
     <section className="border-y border-border bg-secondary/40">
-      <div className="mx-auto max-w-6xl px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div className="mx-auto max-w-6xl px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
         {items.map((i) => (
           <div key={i.k} className="text-center md:text-left">
             <div className="font-serif font-bold text-3xl text-accent">{i.k}</div>
@@ -204,21 +249,22 @@ function TrustBar() {
 }
 
 function ThreeSteps() {
+  const { t } = useT();
   const steps = [
-    { n: "01", title: "Vertel ons over je plan", desc: "Beantwoord een korte vragenlijst online. We weten meteen wat je nodig hebt." },
-    { n: "02", title: "Wij regelen de administratie", desc: "Financieel plan, statuten en publicatie. Alles digitaal in één traject geregeld." },
-    { n: "03", title: "Je BV is klaar", desc: "Tussen 8 en 15 werkdagen later ben je officieel ondernemer. Klaar om te starten." },
+    { n: "01", title: t("steps.1.title"), desc: t("steps.1.desc") },
+    { n: "02", title: t("steps.2.title"), desc: t("steps.2.desc") },
+    { n: "03", title: t("steps.3.title"), desc: t("steps.3.desc") },
   ];
   return (
-    <section id="stappen" className="py-20 lg:py-28">
+    <section id="stappen" className="py-14 lg:py-20">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
-          <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">Hoe het werkt</span>
+          <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">{t("steps.eyebrow")}</span>
           <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
-            Drie stappen.
+            {t("steps.title")}
           </h2>
         </div>
-        <div className="mt-12 grid md:grid-cols-3 gap-6">
+        <div className="mt-10 grid md:grid-cols-3 gap-6">
           {steps.map((s) => (
             <div key={s.n} className="bg-card border border-border rounded-2xl p-7 hover:shadow-xl hover:shadow-accent/5 transition-shadow">
               <div className="font-serif font-bold text-sm text-accent">{s.n}</div>
@@ -227,9 +273,9 @@ function ThreeSteps() {
             </div>
           ))}
         </div>
-        <div className="mt-10 text-center">
+        <div className="mt-8 text-center">
           <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7 font-semibold">
-            <a href="#guided-start">Start nu <ArrowRight className="ml-2 h-4 w-4" /></a>
+            <a href="#guided-start">{t("steps.cta")} <ArrowRight className="ml-2 h-4 w-4" /></a>
           </Button>
         </div>
       </div>
@@ -242,6 +288,7 @@ type Activity = "yes" | "maybe" | "no";
 type Partners = "alone" | "partners";
 
 function GuidedStart() {
+  const { t } = useT();
   const [speed, setSpeed] = useState<Speed | null>(null);
   const [activity, setActivity] = useState<Activity | null>(null);
   const [partners, setPartners] = useState<Partners | null>(null);
@@ -249,39 +296,32 @@ function GuidedStart() {
   const recommendation = useMemo(() => {
     if (!speed || !activity || !partners) return null;
     const wantsUltimate = speed === "fast" || activity === "no" || partners === "partners";
+    const baseFeatures = [
+      t("guided.feat.intro") || "Kennismaking + stappenplan",
+    ];
+    const common = [
+      "Kennismaking + stappenplan",
+      "Ontwerp statuten",
+      "Financieel plan",
+      "Afstemming met notaris + planning",
+      "Aanvraag KBO",
+      "Aanvraag btw-nummer",
+    ];
+    void baseFeatures;
     return wantsUltimate
       ? {
           name: "Ultimate" as const,
-          timing: "Klaar in max. 8 werkdagen",
-          reason:
-            "Op basis van je antwoorden raden we Ultimate aan: voorrangsbehandeling, UBO inbegrepen en de snelste doorlooptijd.",
-          features: [
-            "Kennismaking + stappenplan",
-            "Ontwerp statuten",
-            "Financieel plan",
-            "Afstemming met notaris + planning",
-            "Aanvraag KBO",
-            "Aanvraag btw-nummer",
-            "UBO-registratie inbegrepen",
-            "Oprichting binnen 8 werkdagen",
-          ],
+          timing: t("guided.timing.ultimate"),
+          reason: t("guided.reason.ultimate"),
+          features: [...common, "UBO", t("guided.timing.ultimate")],
         }
       : {
           name: "Premium" as const,
-          timing: "Klaar in max. 15 werkdagen",
-          reason:
-            "Op basis van je antwoorden volstaat Premium ruimschoots. Correct starten zonder tijdsdruk, met alles erop en eraan.",
-          features: [
-            "Kennismaking + stappenplan",
-            "Ontwerp statuten",
-            "Financieel plan",
-            "Afstemming met notaris + planning",
-            "Aanvraag KBO",
-            "Aanvraag btw-nummer",
-            "Oprichting binnen 15 werkdagen",
-          ],
+          timing: t("guided.timing.premium"),
+          reason: t("guided.reason.premium"),
+          features: [...common, t("guided.timing.premium")],
         };
-  }, [speed, activity, partners]);
+  }, [speed, activity, partners, t]);
 
   const reset = () => {
     setSpeed(null);
@@ -292,49 +332,47 @@ function GuidedStart() {
   const isUltimate = recommendation?.name === "Ultimate";
 
   return (
-    <section id="guided-start" className="py-20 lg:py-28 bg-secondary/40 border-y border-border">
+    <section id="guided-start" className="py-14 lg:py-20 bg-secondary/40 border-y border-border">
       <div className="mx-auto max-w-4xl px-6">
         <div className="max-w-2xl">
-          <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">Guided start</span>
+          <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">{t("guided.eyebrow")}</span>
           <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
-            3 vragen.
+            {t("guided.title")}
           </h2>
-          <p className="mt-4 text-muted-foreground">
-            Beantwoord drie korte vragen. Wij tonen direct welk pakket bij jouw situatie past.
-          </p>
+          <p className="mt-3 text-muted-foreground">{t("guided.intro")}</p>
         </div>
 
-        <div className="mt-10 bg-card border border-border rounded-3xl p-7 lg:p-10 space-y-8">
+        <div className="mt-8 bg-card border border-border rounded-3xl p-7 lg:p-10 space-y-7">
           <QuizStep
             n={1}
-            question="Hoe snel wil je starten?"
+            question={t("guided.q1")}
             value={speed}
             onChange={setSpeed}
             options={[
-              { key: "fast", label: "Zo snel mogelijk" },
-              { key: "month", label: "Binnen 1 maand" },
-              { key: "none", label: "Geen haast" },
+              { key: "fast", label: t("guided.q1.fast") },
+              { key: "month", label: t("guided.q1.month") },
+              { key: "none", label: t("guided.q1.none") },
             ]}
           />
           <QuizStep
             n={2}
-            question="Ken je al je activiteit?"
+            question={t("guided.q2")}
             value={activity}
             onChange={setActivity}
             options={[
-              { key: "yes", label: "Ja, ik weet exact wat" },
-              { key: "maybe", label: "Ongeveer, nog vragen" },
-              { key: "no", label: "Nee, ik wil begeleiding" },
+              { key: "yes", label: t("guided.q2.yes") },
+              { key: "maybe", label: t("guided.q2.maybe") },
+              { key: "no", label: t("guided.q2.no") },
             ]}
           />
           <QuizStep
             n={3}
-            question="Richt je alleen op of met vennoten?"
+            question={t("guided.q3")}
             value={partners}
             onChange={setPartners}
             options={[
-              { key: "alone", label: "Alleen" },
-              { key: "partners", label: "Met vennoten" },
+              { key: "alone", label: t("guided.q3.alone") },
+              { key: "partners", label: t("guided.q3.partners") },
             ]}
           />
 
@@ -343,7 +381,7 @@ function GuidedStart() {
               <div className="absolute -top-12 -right-12 h-40 w-40 rounded-full bg-accent/20 blur-3xl" />
               <div className="relative">
                 <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">
-                  Aanbevolen traject
+                  {t("guided.recommended")}
                 </span>
                 <div className="mt-2 flex flex-wrap items-baseline gap-x-4 gap-y-1">
                   <h3 className="font-serif font-bold text-3xl tracking-tight">
@@ -358,7 +396,7 @@ function GuidedStart() {
                       className="inline-flex items-center gap-1 text-xs font-semibold rounded-full px-2.5 py-1"
                       style={{ background: "var(--accent)", color: "var(--accent-foreground)" }}
                     >
-                      <Sparkles className="h-3 w-3" /> Snelst
+                      <Sparkles className="h-3 w-3" /> {t("guided.fastest")}
                     </span>
                   )}
                 </div>
@@ -367,7 +405,7 @@ function GuidedStart() {
 
                 <div className="mt-6">
                   <div className="font-serif font-bold text-sm text-foreground uppercase tracking-wide">
-                    Wat is inbegrepen
+                    {t("guided.included")}
                   </div>
                   <ul className="mt-3 grid sm:grid-cols-2 gap-2">
                     {recommendation.features.map((f) => (
@@ -382,20 +420,16 @@ function GuidedStart() {
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
                     <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                      <WhatsAppIcon className="mr-2 h-4 w-4" /> Vraag een vrijblijvend gesprek
+                      <WhatsAppIcon className="mr-2 h-4 w-4" /> {t("guided.cta.whatsapp")}
                     </a>
                   </Button>
                   <Button asChild size="lg" variant="outline" className="rounded-full font-semibold border-border bg-transparent text-foreground hover:bg-secondary">
                     <a href={`mailto:${EMAIL}?subject=${encodeURIComponent(`Vrijblijvend gesprek — ${recommendation.name}`)}`}>
-                      <Mail className="mr-2 h-4 w-4" /> Mail ons
+                      <Mail className="mr-2 h-4 w-4" /> {t("guided.cta.mail")}
                     </a>
                   </Button>
-                  <Button
-                    onClick={reset}
-                    variant="ghost"
-                    className="rounded-full text-foreground hover:bg-secondary"
-                  >
-                    Opnieuw beginnen
+                  <Button onClick={reset} variant="ghost" className="rounded-full text-foreground hover:bg-secondary">
+                    {t("guided.cta.reset")}
                   </Button>
                 </div>
               </div>
@@ -453,22 +487,23 @@ function QuizStep<T extends string>({
 }
 
 function WhyTrust() {
+  const { t } = useT();
   const items = [
-    { icon: Users, title: "Eén vast contactpersoon", desc: "Geen callcenters, geen wachtrijen. Iemand die je kent bij naam." },
-    { icon: Shield, title: "15 jaar accountancy", desc: "Echte expertise, niet zomaar een online formulier." },
-    { icon: Clock, title: "Klaar in 8 tot 15 werkdagen", desc: "Wij bewaken het tempo, jij focust op ondernemen." },
-    { icon: FileText, title: "Vaste aanpak vooraf", desc: "Heldere afspraken. Wat we beloven, leveren we." },
+    { icon: Users, title: t("why.1.title"), desc: t("why.1.desc") },
+    { icon: Shield, title: t("why.2.title"), desc: t("why.2.desc") },
+    { icon: Clock, title: t("why.3.title"), desc: t("why.3.desc") },
+    { icon: FileText, title: t("why.4.title"), desc: t("why.4.desc") },
   ];
   return (
-    <section id="waarom" className="py-20 lg:py-28">
+    <section id="waarom" className="py-14 lg:py-20">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
-          <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">Waarom ons</span>
+          <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">{t("why.eyebrow")}</span>
           <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl tracking-tight">
-            <span style={{ color: "var(--accent)" }}>Waarom ons</span>
+            <span style={{ color: "var(--accent)" }}>{t("why.title")}</span>
           </h2>
         </div>
-        <div className="mt-12 grid sm:grid-cols-2 gap-5">
+        <div className="mt-10 grid sm:grid-cols-2 gap-5">
           {items.map(({ icon: Icon, title, desc }) => (
             <div key={title} className="flex gap-4 bg-card border border-border rounded-2xl p-6">
               <div className="h-11 w-11 rounded-xl bg-accent/15 text-accent flex items-center justify-center shrink-0">
@@ -487,23 +522,24 @@ function WhyTrust() {
 }
 
 function Werkwijze() {
+  const { t } = useT();
   const stappen = [
-    { n: "1", title: "Kennismaking", desc: "Gratis en vrijblijvend gesprek. We bespreken jouw plannen en beantwoorden al je vragen." },
-    { n: "2", title: "Voorbereiding", desc: "Wij verzamelen alle documenten, stellen het financieel plan op en bereiden de oprichtingsakte voor." },
-    { n: "3", title: "Oprichting", desc: "De notaris passeert de akte via volmacht. Jij hoeft nergens naartoe. 100% digitaal." },
-    { n: "4", title: "Jouw BV is actief", desc: "Publicatie in het Belgisch Staatsblad, KBO-registratie en activering. Officieel ondernemer." },
+    { n: "1", title: t("method.1.title"), desc: t("method.1.desc") },
+    { n: "2", title: t("method.2.title"), desc: t("method.2.desc") },
+    { n: "3", title: t("method.3.title"), desc: t("method.3.desc") },
+    { n: "4", title: t("method.4.title"), desc: t("method.4.desc") },
   ];
   return (
-    <section id="werkwijze" className="py-20 lg:py-28 bg-secondary/40 border-y border-border">
+    <section id="werkwijze" className="py-14 lg:py-20 bg-secondary/40 border-y border-border">
       <div className="mx-auto max-w-4xl px-6">
         <div className="max-w-2xl">
-          <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">Werkwijze</span>
+          <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">{t("method.eyebrow")}</span>
           <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
-            Onze aanpak.
+            {t("method.title")}
           </h2>
-          <p className="mt-4 text-muted-foreground">Een helder traject in vier stappen. Jij weet altijd waar je staat.</p>
+          <p className="mt-3 text-muted-foreground">{t("method.intro")}</p>
         </div>
-        <ol className="mt-12 space-y-4">
+        <ol className="mt-10 space-y-3">
           {stappen.map((s) => (
             <li key={s.n} className="flex gap-5 bg-card border border-border rounded-2xl p-6">
               <div className="h-10 w-10 rounded-full bg-accent text-accent-foreground font-serif font-bold flex items-center justify-center shrink-0">
@@ -522,43 +558,44 @@ function Werkwijze() {
 }
 
 function Reviews() {
+  const { t } = useT();
   const reviews = [
     {
       name: "C. F.",
       stars: 5,
       text:
-        "Ik schrijf zelden reviews, maar deze komt echt uit het hart. Een onderneming opstarten kan overweldigend zijn, zeker met alle administratie en formaliteiten. Vanaf het begin werd ik stap voor stap begeleid met geduld, duidelijkheid en professionaliteit.\n\nAlles werd op een eenvoudige en begrijpelijke manier uitgelegd, waardoor ik met vertrouwen verder kon bouwen aan mijn zaak. Het is zeldzaam om iemand te vinden die expertise combineert met een persoonlijke aanpak.\n\nAls je op zoek bent naar een betrouwbare partner om je onderneming op te starten, raad ik dit zeker aan.",
+        "Ik schrijf zelden reviews, maar deze komt echt uit het hart. Een onderneming opstarten kan overweldigend zijn, zeker met alle administratie en formaliteiten. Vanaf het begin werd ik stap voor stap begeleid met geduld, duidelijkheid en professionaliteit.\n\nAlles werd op een eenvoudige en begrijpelijke manier uitgelegd, waardoor ik met vertrouwen verder kon bouwen aan mijn zaak.",
     },
     {
       name: "N. O.",
       stars: 5,
       text:
-        "Ik heb zeer waardevol advies gekregen bij de opstart van mijn eenmanszaak. De begeleiding was duidelijk, eerlijk en volledig afgestemd op mijn situatie.\n\nEr werd echt de tijd genomen om mijn noden te begrijpen en ik werd door het volledige proces begeleid, van de eerste vragen tot de effectieve opstart. De communicatie verliep snel en professioneel, en ik werd bij elke stap op de hoogte gehouden.\n\nEen zeer betrouwbare en persoonlijke ervaring.",
+        "Ik heb zeer waardevol advies gekregen bij de opstart van mijn eenmanszaak. De begeleiding was duidelijk, eerlijk en volledig afgestemd op mijn situatie.\n\nEr werd echt de tijd genomen om mijn noden te begrijpen en ik werd door het volledige proces begeleid, van de eerste vragen tot de effectieve opstart.",
     },
     {
       name: "B. B.",
       stars: 5,
       text:
-        "Elke stap werd duidelijk uitgelegd en op mijn vragen werd altijd snel geantwoord. Het volledige proces verliep vlot en ik werd goed begeleid bij alle administratieve stappen.\n\nEen zeer betrouwbare partner voor iedereen die een zaak wil opstarten.",
+        "Elke stap werd duidelijk uitgelegd en op mijn vragen werd altijd snel geantwoord. Het volledige proces verliep vlot en ik werd goed begeleid bij alle administratieve stappen.",
     },
     {
       name: "E. M.",
       stars: 5,
       text:
-        "Ik ben enorm tevreden over de service. Vanaf het eerste contact viel de professionaliteit en duidelijke communicatie meteen op.\n\nWat ik vooral waardeer, is dat er niet enkel begeleiding is, maar ook actief wordt meegedacht en nuttig advies wordt gegeven. Alles wordt helder uitgelegd en er is altijd bereikbaarheid voor vragen.\n\nDankzij deze ondersteuning kon ik mij volledig focussen op mijn onderneming, met de zekerheid dat alles correct werd opgevolgd.",
+        "Ik ben enorm tevreden over de service. Vanaf het eerste contact viel de professionaliteit en duidelijke communicatie meteen op. Er wordt actief meegedacht en nuttig advies wordt gegeven.",
     },
   ];
   return (
-    <section id="reviews" className="py-20 lg:py-28">
+    <section id="reviews" className="py-14 lg:py-20">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
-          <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">Klantenervaring</span>
+          <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">{t("reviews.eyebrow")}</span>
           <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
-            Wat klanten over ons zeggen.
+            {t("reviews.title")}
           </h2>
-          <p className="mt-4 text-muted-foreground">Echte ervaringen van ondernemers die we begeleidden bij hun oprichting.</p>
+          <p className="mt-3 text-muted-foreground">{t("reviews.intro")}</p>
         </div>
-        <div className="mt-12 grid md:grid-cols-2 gap-6">
+        <div className="mt-10 grid md:grid-cols-2 gap-6">
           {reviews.map((r) => (
             <div key={r.name} className="bg-card border border-border rounded-2xl p-7 flex flex-col">
               <Quote className="h-6 w-6 text-accent/60" />
@@ -580,6 +617,7 @@ function Reviews() {
 }
 
 function ContactForm() {
+  const { t } = useT();
   const [form, setForm] = useState({
     voornaam: "",
     achternaam: "",
@@ -615,116 +653,109 @@ function ContactForm() {
     "mt-1 block w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/40";
 
   return (
-    <section id="contact" className="py-20 lg:py-28 bg-secondary/40 border-y border-border">
+    <section id="contact" className="py-14 lg:py-20 bg-secondary/40 border-y border-border">
       <div className="mx-auto max-w-6xl px-6 grid lg:grid-cols-[1.4fr_1fr] gap-10">
         <div>
-          <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">Contact</span>
+          <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">{t("contact.eyebrow")}</span>
           <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
-            Start vandaag met jouw BV
+            {t("contact.title")}
           </h2>
-          <p className="mt-4 text-muted-foreground">
-            Vul het formulier in en wij nemen snel contact op voor een vrijblijvend gesprek.
-          </p>
+          <p className="mt-3 text-muted-foreground">{t("contact.intro")}</p>
 
-          <form onSubmit={onSubmit} className="mt-8 bg-card border border-border rounded-3xl p-7 lg:p-8 space-y-5">
+          <form onSubmit={onSubmit} className="mt-7 bg-card border border-border rounded-3xl p-7 lg:p-8 space-y-5">
             <div className="grid sm:grid-cols-2 gap-4">
               <label className="block text-sm font-medium text-foreground">
-                Voornaam *
-                <input required maxLength={80} value={form.voornaam} onChange={update("voornaam")} placeholder="Jan" className={inputCls} />
+                {t("contact.firstname")} *
+                <input required maxLength={80} value={form.voornaam} onChange={update("voornaam")} className={inputCls} />
               </label>
               <label className="block text-sm font-medium text-foreground">
-                Achternaam *
-                <input required maxLength={80} value={form.achternaam} onChange={update("achternaam")} placeholder="Janssens" className={inputCls} />
+                {t("contact.lastname")} *
+                <input required maxLength={80} value={form.achternaam} onChange={update("achternaam")} className={inputCls} />
               </label>
             </div>
             <div className="grid sm:grid-cols-2 gap-4">
               <label className="block text-sm font-medium text-foreground">
-                E-mail *
-                <input required type="email" maxLength={160} value={form.email} onChange={update("email")} placeholder="jan@bedrijf.be" className={inputCls} />
+                {t("contact.email")} *
+                <input required type="email" maxLength={160} value={form.email} onChange={update("email")} className={inputCls} />
               </label>
               <label className="block text-sm font-medium text-foreground">
-                Gsm-nummer *
-                <input required type="tel" maxLength={30} value={form.gsm} onChange={update("gsm")} placeholder="04xx xx xx xx" className={inputCls} />
+                {t("contact.phone")} *
+                <input required type="tel" maxLength={30} value={form.gsm} onChange={update("gsm")} className={inputCls} />
               </label>
             </div>
             <div className="grid sm:grid-cols-2 gap-4">
               <label className="block text-sm font-medium text-foreground">
-                Wanneer wil je starten? *
+                {t("contact.when")} *
                 <select required value={form.wanneer} onChange={update("wanneer")} className={inputCls}>
-                  <option value="">Selecteer</option>
-                  <option>Zo snel mogelijk</option>
-                  <option>Binnen 1 maand</option>
-                  <option>Binnen 3 maanden</option>
-                  <option>Geen haast</option>
+                  <option value="">{t("contact.select")}</option>
+                  <option>{t("contact.when.asap")}</option>
+                  <option>{t("contact.when.month")}</option>
+                  <option>{t("contact.when.3months")}</option>
+                  <option>{t("contact.when.none")}</option>
                 </select>
               </label>
               <label className="block text-sm font-medium text-foreground">
-                Oprichting alleen of met vennoten *
+                {t("contact.structure")} *
                 <select required value={form.structuur} onChange={update("structuur")} className={inputCls}>
-                  <option value="">Selecteer</option>
-                  <option>Alleen</option>
-                  <option>Met vennoten</option>
+                  <option value="">{t("contact.select")}</option>
+                  <option>{t("contact.structure.alone")}</option>
+                  <option>{t("contact.structure.partners")}</option>
                 </select>
               </label>
             </div>
             <label className="block text-sm font-medium text-foreground">
-              Welke activiteit start je? *
-              <input required maxLength={200} value={form.activiteit} onChange={update("activiteit")} placeholder="bv. IT-consulting, horeca, e-commerce..." className={inputCls} />
+              {t("contact.activity")} *
+              <input required maxLength={200} value={form.activiteit} onChange={update("activiteit")} className={inputCls} />
             </label>
             <label className="block text-sm font-medium text-foreground">
-              Jouw vraag
-              <textarea rows={4} maxLength={1500} value={form.vraag} onChange={update("vraag")} placeholder="Waarmee kunnen we je helpen?" className={inputCls} />
+              {t("contact.question")}
+              <textarea rows={4} maxLength={1500} value={form.vraag} onChange={update("vraag")} placeholder={t("contact.question.placeholder")} className={inputCls} />
             </label>
             <p className="text-xs text-muted-foreground">
-              Door dit formulier te versturen ga je akkoord met onze{" "}
-              <a href="https://opstartdesk.be/privacy.html" target="_blank" rel="noopener noreferrer" className="text-accent underline-offset-4 hover:underline">
-                privacyverklaring
-              </a>.
+              {t("contact.privacy")}{" "}
+              <Link to="/privacy" className="text-accent underline-offset-4 hover:underline">
+                {t("contact.privacy.link")}
+              </Link>.
             </p>
             <Button type="submit" size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7 font-semibold">
-              Verstuur bericht <ArrowRight className="ml-2 h-4 w-4" />
+              {t("contact.submit")} <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </form>
         </div>
 
         <aside className="space-y-5">
           <div className="bg-card border border-border rounded-2xl p-6">
-            <h3 className="font-serif font-bold text-xl text-foreground tracking-tight">Snel contact</h3>
-            <p className="mt-2 text-sm text-muted-foreground">Wil je sneller schakelen? Stuur ons kort via WhatsApp of mail ons je vraag.</p>
+            <h3 className="font-serif font-bold text-xl text-foreground tracking-tight">{t("contact.quick.title")}</h3>
+            <p className="mt-2 text-sm text-muted-foreground">{t("contact.quick.intro")}</p>
             <div className="mt-4 flex flex-col gap-2">
               <Button asChild className="rounded-full justify-start font-semibold bg-[#25D366] text-white hover:bg-[#1ebe5a]">
                 <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                  <WhatsAppIcon className="mr-2 h-4 w-4" /> WhatsApp ons
+                  <WhatsAppIcon className="mr-2 h-4 w-4" /> {t("contact.quick.whatsapp")}
                 </a>
               </Button>
               <Button asChild variant="outline" className="rounded-full justify-start font-semibold bg-transparent text-foreground hover:bg-secondary">
                 <a href={`mailto:${EMAIL}`}>
-                  <Mail className="mr-2 h-4 w-4" /> Mail ons
+                  <Mail className="mr-2 h-4 w-4" /> {t("contact.quick.mail")}
                 </a>
               </Button>
             </div>
           </div>
           <div className="bg-card border border-border rounded-2xl p-6">
-            <h3 className="font-serif font-bold text-xl text-foreground tracking-tight">Gratis BV-checklist</h3>
-            <p className="mt-2 text-sm text-muted-foreground">Download onze starters-checklist en start meteen met de juiste documenten.</p>
+            <h3 className="font-serif font-bold text-xl text-foreground tracking-tight">{t("contact.checklist.title")}</h3>
+            <p className="mt-2 text-sm text-muted-foreground">{t("contact.checklist.intro")}</p>
             <Button asChild className="mt-4 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold w-full">
               <a href={CHECKLIST_URL} target="_blank" rel="noopener noreferrer">
-                <Download className="mr-2 h-4 w-4" /> Download checklist
+                <Download className="mr-2 h-4 w-4" /> {t("contact.checklist.cta")}
               </a>
             </Button>
           </div>
           <div className="bg-secondary/60 border border-border rounded-2xl p-6">
-            <div className="text-sm font-semibold text-foreground">⚡ BV oprichting meestal binnen 8 werkdagen</div>
-            <h4 className="mt-3 font-serif font-bold text-lg text-foreground tracking-tight">Waarom kiezen voor een BV</h4>
+            <div className="text-sm font-semibold text-foreground">{t("contact.bv.fast")}</div>
+            <h4 className="mt-3 font-serif font-bold text-lg text-foreground tracking-tight">{t("contact.bv.title")}</h4>
             <ul className="mt-3 space-y-2 text-sm text-foreground">
-              {[
-                "Bescherming van je privévermogen",
-                "Fiscale optimalisatie mogelijk",
-                "Professionele uitstraling",
-                "Makkelijker samenwerken met partners",
-              ].map((x) => (
-                <li key={x} className="flex items-start gap-2">
-                  <Check className="h-4 w-4 text-accent mt-0.5 shrink-0" /> {x}
+              {["contact.bv.1", "contact.bv.2", "contact.bv.3", "contact.bv.4"].map((k) => (
+                <li key={k} className="flex items-start gap-2">
+                  <Check className="h-4 w-4 text-accent mt-0.5 shrink-0" /> {t(k)}
                 </li>
               ))}
             </ul>
@@ -736,27 +767,28 @@ function ContactForm() {
 }
 
 function FAQ() {
+  const { t } = useT();
   const qs = [
-    { q: "Moet ik mij fysiek verplaatsen voor de oprichting?", a: "Nee. Het volledige traject is 100% digitaal. Documenten worden digitaal voorbereid en ondertekend." },
-    { q: "Is OpstartBV beschikbaar in heel België?", a: "Ja, en daarbuiten. We werken wereldwijd met ondernemers. Omdat alles digitaal verloopt, maakt je locatie niet uit." },
-    { q: "Hoe lang duurt het om een BV op te richten?", a: "Premium: max. 15 werkdagen. Ultimate: max. 8 werkdagen. De exacte timing hangt af van hoe snel jij documenten aanlevert en de bank meewerkt." },
-    { q: "Heb ik nog startkapitaal nodig?", a: "Er is geen vast minimum meer voor een BV. Je hebt wel een toereikend aanvangsvermogen nodig dat past bij je activiteit, onderbouwd in een financieel plan." },
-    { q: "Wat is het verschil tussen Premium en Ultimate?", a: "Snelheid. Ultimate bevat ook prioritaire behandeling, snellere notarisafhandeling, versnelde publicatie in het Belgisch Staatsblad en UBO-aangifte." },
+    { q: t("faq.q1"), a: t("faq.a1") },
+    { q: t("faq.q2"), a: t("faq.a2") },
+    { q: t("faq.q3"), a: t("faq.a3") },
+    { q: t("faq.q4"), a: t("faq.a4") },
+    { q: t("faq.q5"), a: t("faq.a5") },
   ];
   return (
-    <section id="faq" className="py-20 lg:py-28">
+    <section id="faq" className="py-14 lg:py-20">
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
-          <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">FAQ</span>
-          <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">Veelgestelde vragen</h2>
+          <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">{t("faq.eyebrow")}</span>
+          <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">{t("faq.title")}</h2>
           <p className="mt-3 text-sm text-muted-foreground">
-            Speciale situatie? Stuur gerust een{" "}
+            {t("faq.intro.1")}{" "}
             <a className="text-accent underline-offset-4 hover:underline" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-              WhatsApp-bericht
+              {t("faq.intro.2")}
             </a>.
           </p>
         </div>
-        <div className="mt-10 space-y-3">
+        <div className="mt-8 space-y-3">
           {qs.map((item) => (
             <details key={item.q} className="group bg-card border border-border rounded-2xl p-6 open:shadow-md transition-shadow">
               <summary className="cursor-pointer list-none flex items-center justify-between font-serif font-bold text-lg text-foreground">
@@ -773,31 +805,30 @@ function FAQ() {
 }
 
 function CTA() {
+  const { t } = useT();
   return (
-    <section id="start" className="py-24 lg:py-32">
+    <section id="start" className="py-16 lg:py-24">
       <div className="mx-auto max-w-4xl px-6">
-        <div className="rounded-[2rem] bg-card border border-border p-10 lg:p-16 text-center relative overflow-hidden">
+        <div className="rounded-[2rem] bg-card border border-border p-10 lg:p-14 text-center relative overflow-hidden">
           <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-accent/20 blur-3xl" />
           <div className="relative">
             <h2 className="font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
-              Klaar om te starten?
+              {t("cta.title")}
             </h2>
-            <p className="mt-4 text-muted-foreground max-w-lg mx-auto">
-              Vandaag nog starten? Vraag een vrijblijvend gesprek. Nog 2 plaatsen vrij deze week.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <p className="mt-4 text-muted-foreground max-w-lg mx-auto">{t("cta.intro")}</p>
+            <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
               <Button asChild size="lg" className="rounded-full bg-[#25D366] text-white hover:bg-[#1ebe5a] h-14 px-8 font-semibold text-base">
-                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="Vraag een vrijblijvend gesprek via WhatsApp">
-                  <WhatsAppIcon className="mr-2 h-5 w-5" /> Vraag een vrijblijvend gesprek
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label={t("cta.whatsapp")}>
+                  <WhatsAppIcon className="mr-2 h-5 w-5" /> {t("cta.whatsapp")}
                 </a>
               </Button>
               <Button asChild size="lg" variant="outline" className="rounded-full h-14 px-7 font-semibold border-border bg-transparent text-foreground hover:bg-secondary">
                 <a href={`mailto:${EMAIL}`}>
-                  <Mail className="mr-2 h-4 w-4" /> Mail ons
+                  <Mail className="mr-2 h-4 w-4" /> {t("cta.mail")}
                 </a>
               </Button>
             </div>
-            <p className="mt-4 text-xs text-muted-foreground">100% digitaal · Bereikbaar in heel België · Vast contactpersoon</p>
+            <p className="mt-4 text-xs text-muted-foreground">{t("cta.foot")}</p>
           </div>
         </div>
       </div>
@@ -806,16 +837,17 @@ function CTA() {
 }
 
 function Footer() {
+  const { t } = useT();
   return (
     <footer className="border-t border-border py-10">
       <div className="mx-auto max-w-6xl px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-        <img src={logoWordmark} alt="OpstartBV" className="h-7 w-auto" />
+        <img src={logoWordmark} alt="OpstartBV" className="h-9 w-auto" />
         <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
           <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-foreground inline-flex items-center gap-1.5">
             <WhatsAppIcon className="h-4 w-4" /> WhatsApp
           </a>
           <a href={`mailto:${EMAIL}`} className="hover:text-foreground">{EMAIL}</a>
-          <a href="https://opstartdesk.be/privacy.html" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">Privacy</a>
+          <Link to="/privacy" className="hover:text-foreground">{t("footer.privacy")}</Link>
         </div>
         <div>© {new Date().getFullYear()} OpstartBV</div>
       </div>
