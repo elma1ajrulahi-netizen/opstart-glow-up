@@ -132,7 +132,7 @@ function Header() {
     <header className="border-b border-border/60 bg-background/80 backdrop-blur sticky top-0 z-40">
       <div className="mx-auto max-w-6xl px-6 h-24 md:h-28 flex items-center justify-between gap-4">
         <a href="#top" className="flex items-center gap-2 shrink-0">
-          <img src={logoWordmark} alt="OpstartBV" className="h-16 md:h-20 w-auto drop-shadow-sm" />
+          <img src={logoWordmark} alt="OpstartBV" className="h-12 md:h-14 w-auto drop-shadow-sm" />
         </a>
         <nav className="hidden lg:flex items-center gap-7 text-sm text-muted-foreground">
           <a href="#stappen" className="hover:text-foreground transition-colors">{t("nav.how")}</a>
@@ -183,7 +183,7 @@ function Hero() {
             </a>
           </Button>
           <Button asChild size="lg" variant="outline" className="rounded-full h-12 px-6 font-semibold border-border bg-transparent text-foreground hover:bg-secondary">
-            <a href={CHECKLIST_URL} target="_blank" rel="noopener noreferrer">
+            <a href={CHECKLIST_URL} target="_blank" rel="noopener noreferrer" download>
               <Download className="mr-2 h-4 w-4" /> {t("hero.cta.checklist")}
             </a>
           </Button>
@@ -232,7 +232,7 @@ function TrustBar() {
     { k: "15+", v: t("trust.years") },
     { k: "500+", v: t("trust.entrepreneurs") },
     { k: "100%", v: t("trust.digital") },
-    { k: "8 dgn", v: t("trust.fastest") },
+    { k: `8 ${t("unit.days")}`, v: t("trust.fastest") },
   ];
   return (
     <section className="border-y border-border bg-secondary/40">
@@ -560,30 +560,10 @@ function Werkwijze() {
 function Reviews() {
   const { t } = useT();
   const reviews = [
-    {
-      name: "C. F.",
-      stars: 5,
-      text:
-        "Ik schrijf zelden reviews, maar deze komt echt uit het hart. Een onderneming opstarten kan overweldigend zijn, zeker met alle administratie en formaliteiten. Vanaf het begin werd ik stap voor stap begeleid met geduld, duidelijkheid en professionaliteit.\n\nAlles werd op een eenvoudige en begrijpelijke manier uitgelegd, waardoor ik met vertrouwen verder kon bouwen aan mijn zaak.",
-    },
-    {
-      name: "N. O.",
-      stars: 5,
-      text:
-        "Ik heb zeer waardevol advies gekregen bij de opstart van mijn eenmanszaak. De begeleiding was duidelijk, eerlijk en volledig afgestemd op mijn situatie.\n\nEr werd echt de tijd genomen om mijn noden te begrijpen en ik werd door het volledige proces begeleid, van de eerste vragen tot de effectieve opstart.",
-    },
-    {
-      name: "B. B.",
-      stars: 5,
-      text:
-        "Elke stap werd duidelijk uitgelegd en op mijn vragen werd altijd snel geantwoord. Het volledige proces verliep vlot en ik werd goed begeleid bij alle administratieve stappen.",
-    },
-    {
-      name: "E. M.",
-      stars: 5,
-      text:
-        "Ik ben enorm tevreden over de service. Vanaf het eerste contact viel de professionaliteit en duidelijke communicatie meteen op. Er wordt actief meegedacht en nuttig advies wordt gegeven.",
-    },
+    { name: "C. F.", stars: 5, text: t("review.1") },
+    { name: "N. O.", stars: 5, text: t("review.2") },
+    { name: "B. B.", stars: 5, text: t("review.3") },
+    { name: "E. M.", stars: 5, text: t("review.4") },
   ];
   return (
     <section id="reviews" className="py-14 lg:py-20">
@@ -744,7 +724,7 @@ function ContactForm() {
             <h3 className="font-serif font-bold text-xl text-foreground tracking-tight">{t("contact.checklist.title")}</h3>
             <p className="mt-2 text-sm text-muted-foreground">{t("contact.checklist.intro")}</p>
             <Button asChild className="mt-4 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold w-full">
-              <a href={CHECKLIST_URL} target="_blank" rel="noopener noreferrer">
+              <a href={CHECKLIST_URL} target="_blank" rel="noopener noreferrer" download>
                 <Download className="mr-2 h-4 w-4" /> {t("contact.checklist.cta")}
               </a>
             </Button>
