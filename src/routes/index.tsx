@@ -183,7 +183,7 @@ function Hero() {
             </a>
           </Button>
           <Button asChild size="lg" variant="outline" className="rounded-full h-12 px-6 font-semibold border-border bg-transparent text-foreground hover:bg-secondary">
-            <a href={CHECKLIST_URL} target="_blank" rel="noopener noreferrer">
+            <a href={CHECKLIST_URL} target="_blank" rel="noopener noreferrer" download>
               <Download className="mr-2 h-4 w-4" /> {t("hero.cta.checklist")}
             </a>
           </Button>
@@ -724,7 +724,7 @@ function ContactForm() {
             <h3 className="font-serif font-bold text-xl text-foreground tracking-tight">{t("contact.checklist.title")}</h3>
             <p className="mt-2 text-sm text-muted-foreground">{t("contact.checklist.intro")}</p>
             <Button asChild className="mt-4 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold w-full">
-              <a href={CHECKLIST_URL} target="_blank" rel="noopener noreferrer">
+              <a href={CHECKLIST_URL} target="_blank" rel="noopener noreferrer" download>
                 <Download className="mr-2 h-4 w-4" /> {t("contact.checklist.cta")}
               </a>
             </Button>
