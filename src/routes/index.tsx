@@ -132,7 +132,7 @@ function Header() {
     <header className="border-b border-border/60 bg-background/80 backdrop-blur sticky top-0 z-40">
       <div className="mx-auto max-w-6xl px-6 h-24 md:h-28 flex items-center justify-between gap-4">
         <a href="#top" className="flex items-center gap-2 shrink-0">
-          <img src={logoWordmark} alt="OpstartBV" className="h-12 md:h-14 w-auto drop-shadow-sm" />
+          <img src={logoWordmark} alt="OpstartBV" className="h-16 md:h-20 w-auto drop-shadow-sm" />
         </a>
         <nav className="hidden lg:flex items-center gap-7 text-sm text-muted-foreground">
           <a href="#stappen" className="hover:text-foreground transition-colors">{t("nav.how")}</a>
