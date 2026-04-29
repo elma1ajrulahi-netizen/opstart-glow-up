@@ -18,7 +18,7 @@ import {
   Laptop,
   ChevronDown,
 } from "lucide-react";
-import logoWordmark from "@/assets/logo-opstartbv.jpg";
+import logoWordmark from "@/assets/logo-opstartbv.png";
 import { LANGS, useT, type Lang } from "@/i18n/LanguageContext";
 
 const WHATSAPP_URL = "https://wa.me/32491167881";
