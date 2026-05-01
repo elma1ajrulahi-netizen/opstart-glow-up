@@ -22,7 +22,7 @@ import logoWordmark from "@/assets/logo-opstartbv.png";
 import { LANGS, useT, type Lang } from "@/i18n/LanguageContext";
 
 const WHATSAPP_URL = "https://wa.me/32491167881";
-const EMAIL = "info@opstartbv.be";
+const EMAIL = "info@opstartdesk.be";
 const CHECKLIST_URL = "/checklist.pdf";
 const CONTACT_HASH = "#contact";
 
@@ -30,11 +30,29 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "OpstartBV — Je besloten vennootschap opstarten, persoonlijk begeleid" },
+      { title: "Opstartdesk — BV oprichten in België | Company formation & startup services" },
       {
         name: "description",
         content:
-          "Eén vast contactpersoon, één duidelijke aanpak en je besloten vennootschap in 8 tot 15 werkdagen opgericht. 100% digitaal, bereikbaar in heel België.",
+          "Opstartdesk begeleidt je bij je business startup en company formation in België. Persoonlijke entrepreneur support en startup services — start a business met één vast contactpersoon, 100% digitaal, in 8 tot 15 werkdagen.",
+      },
+      {
+        name: "keywords",
+        content:
+          "business startup, company formation, start a business, entrepreneur support, startup services, BV oprichten, vennootschap opstarten, Opstartdesk, België",
+      },
+      { property: "og:title", content: "Opstartdesk — BV oprichten in België | Company formation & startup services" },
+      {
+        property: "og:description",
+        content:
+          "Persoonlijke entrepreneur support voor je business startup. Company formation in België in 8 tot 15 werkdagen, 100% digitaal.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Opstartdesk — Company formation & startup services in België" },
+      {
+        name: "twitter:description",
+        content: "Start a business met één vast contactpersoon. 100% digitaal, in 8 tot 15 werkdagen.",
       },
     ],
   }),
@@ -130,9 +148,9 @@ function Header() {
   const { t } = useT();
   return (
     <header className="border-b border-border/60 bg-background/80 backdrop-blur sticky top-0 z-40">
-      <div className="mx-auto max-w-6xl px-6 h-24 md:h-28 flex items-center justify-between gap-4">
-        <a href="#top" className="flex items-center gap-2 shrink-0">
-          <img src={logoWordmark} alt="OpstartBV" className="h-16 md:h-20 w-auto drop-shadow-sm" />
+      <div className="mx-auto max-w-6xl px-6 h-28 md:h-32 flex items-center justify-between gap-4">
+        <a href="#top" className="flex items-center gap-2 shrink-0" aria-label="Opstartdesk — home">
+          <img src={logoWordmark} alt="Opstartdesk — company formation & startup services" className="h-20 md:h-24 w-auto drop-shadow-sm" />
         </a>
         <nav className="hidden lg:flex items-center gap-7 text-sm text-muted-foreground">
           <a href="#stappen" className="hover:text-foreground transition-colors">{t("nav.how")}</a>
@@ -821,7 +839,7 @@ function Footer() {
   return (
     <footer className="border-t border-border py-10">
       <div className="mx-auto max-w-6xl px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-        <img src={logoWordmark} alt="OpstartBV" className="h-9 w-auto" />
+        <img src={logoWordmark} alt="Opstartdesk — company formation in België" className="h-16 md:h-20 w-auto" />
         <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
           <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-foreground inline-flex items-center gap-1.5">
             <WhatsAppIcon className="h-4 w-4" /> WhatsApp
@@ -829,7 +847,7 @@ function Footer() {
           <a href={`mailto:${EMAIL}`} className="hover:text-foreground">{EMAIL}</a>
           <Link to="/privacy" className="hover:text-foreground">{t("footer.privacy")}</Link>
         </div>
-        <div>© {new Date().getFullYear()} OpstartBV</div>
+        <div>© {new Date().getFullYear()} Opstartdesk</div>
       </div>
     </footer>
   );
