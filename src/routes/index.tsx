@@ -30,11 +30,29 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Opstartdesk — Je besloten vennootschap opstarten, persoonlijk begeleid" },
+      { title: "Opstartdesk — BV oprichten in België | Company formation & startup services" },
       {
         name: "description",
         content:
-          "Eén vast contactpersoon, één duidelijke aanpak en je besloten vennootschap in 8 tot 15 werkdagen opgericht. 100% digitaal, bereikbaar in heel België.",
+          "Opstartdesk begeleidt je bij je business startup en company formation in België. Persoonlijke entrepreneur support en startup services — start a business met één vast contactpersoon, 100% digitaal, in 8 tot 15 werkdagen.",
+      },
+      {
+        name: "keywords",
+        content:
+          "business startup, company formation, start a business, entrepreneur support, startup services, BV oprichten, vennootschap opstarten, Opstartdesk, België",
+      },
+      { property: "og:title", content: "Opstartdesk — BV oprichten in België | Company formation & startup services" },
+      {
+        property: "og:description",
+        content:
+          "Persoonlijke entrepreneur support voor je business startup. Company formation in België in 8 tot 15 werkdagen, 100% digitaal.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Opstartdesk — Company formation & startup services in België" },
+      {
+        name: "twitter:description",
+        content: "Start a business met één vast contactpersoon. 100% digitaal, in 8 tot 15 werkdagen.",
       },
     ],
   }),
