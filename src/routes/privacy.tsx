@@ -8,8 +8,10 @@ const EMAIL = "info@opstartdesk.be";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — Opstartdesk" },
-      { name: "description", content: "Privacy policy van Opstartdesk." },
+      { title: "Privacy policy — Opstartdesk | Company formation & startup services" },
+      { name: "description", content: "Privacyverklaring van Opstartdesk: hoe we persoonsgegevens verwerken bij onze entrepreneur support en startup services in België." },
+      { property: "og:title", content: "Privacy policy — Opstartdesk" },
+      { property: "og:description", content: "Hoe Opstartdesk omgaat met je gegevens bij onze company formation en startup services." },
     ],
   }),
   component: PrivacyPage,
