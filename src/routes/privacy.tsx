@@ -3,13 +3,13 @@ import { ArrowLeft, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useT } from "@/i18n/LanguageContext";
 
-const EMAIL = "info@opstartbv.be";
+const EMAIL = "info@opstartdesk.be";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — OpstartBV" },
-      { name: "description", content: "Privacy policy van OpstartBV." },
+      { title: "Privacy Policy — Opstartdesk" },
+      { name: "description", content: "Privacy policy van Opstartdesk." },
     ],
   }),
   component: PrivacyPage,

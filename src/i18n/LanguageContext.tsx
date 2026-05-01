@@ -8,7 +8,7 @@ type Ctx = {
 };
 
 const LanguageContext = createContext<Ctx | null>(null);
-const STORAGE_KEY = "opstartbv.lang";
+const STORAGE_KEY = "opstartdesk.lang";
 
 function detectInitial(): Lang {
   if (typeof window === "undefined") return "nl";

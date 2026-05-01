@@ -22,7 +22,7 @@ import logoWordmark from "@/assets/logo-opstartbv.png";
 import { LANGS, useT, type Lang } from "@/i18n/LanguageContext";
 
 const WHATSAPP_URL = "https://wa.me/32491167881";
-const EMAIL = "info@opstartbv.be";
+const EMAIL = "info@opstartdesk.be";
 const CHECKLIST_URL = "/checklist.pdf";
 const CONTACT_HASH = "#contact";
 
@@ -30,7 +30,7 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "OpstartBV — Je besloten vennootschap opstarten, persoonlijk begeleid" },
+      { title: "Opstartdesk — Je besloten vennootschap opstarten, persoonlijk begeleid" },
       {
         name: "description",
         content:
@@ -132,7 +132,7 @@ function Header() {
     <header className="border-b border-border/60 bg-background/80 backdrop-blur sticky top-0 z-40">
       <div className="mx-auto max-w-6xl px-6 h-24 md:h-28 flex items-center justify-between gap-4">
         <a href="#top" className="flex items-center gap-2 shrink-0">
-          <img src={logoWordmark} alt="OpstartBV" className="h-16 md:h-20 w-auto drop-shadow-sm" />
+          <img src={logoWordmark} alt="Opstartdesk" className="h-16 md:h-20 w-auto drop-shadow-sm" />
         </a>
         <nav className="hidden lg:flex items-center gap-7 text-sm text-muted-foreground">
           <a href="#stappen" className="hover:text-foreground transition-colors">{t("nav.how")}</a>
@@ -821,7 +821,7 @@ function Footer() {
   return (
     <footer className="border-t border-border py-10">
       <div className="mx-auto max-w-6xl px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-        <img src={logoWordmark} alt="OpstartBV" className="h-9 w-auto" />
+        <img src={logoWordmark} alt="Opstartdesk" className="h-9 w-auto" />
         <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
           <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-foreground inline-flex items-center gap-1.5">
             <WhatsAppIcon className="h-4 w-4" /> WhatsApp
@@ -829,7 +829,7 @@ function Footer() {
           <a href={`mailto:${EMAIL}`} className="hover:text-foreground">{EMAIL}</a>
           <Link to="/privacy" className="hover:text-foreground">{t("footer.privacy")}</Link>
         </div>
-        <div>© {new Date().getFullYear()} OpstartBV</div>
+        <div>© {new Date().getFullYear()} Opstartdesk</div>
       </div>
     </footer>
   );
