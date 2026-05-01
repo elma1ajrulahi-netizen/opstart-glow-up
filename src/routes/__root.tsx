@@ -30,14 +30,13 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Opstartdesk — Company formation & startup services in België" },
+      { name: "description", content: "Opstartdesk: business startup begeleiding, company formation en entrepreneur support in België. Start a business met persoonlijke startup services." },
+      { name: "author", content: "Opstartdesk" },
+      { property: "og:title", content: "Opstartdesk — Company formation & startup services" },
+      { property: "og:description", content: "Persoonlijke entrepreneur support voor je business startup en company formation in België." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
