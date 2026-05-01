@@ -839,7 +839,7 @@ function Footer() {
   return (
     <footer className="border-t border-border py-10">
       <div className="mx-auto max-w-6xl px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-        <img src={logoWordmark} alt="Opstartdesk" className="h-9 w-auto" />
+        <img src={logoWordmark} alt="Opstartdesk — company formation in België" className="h-16 md:h-20 w-auto" />
         <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
           <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-foreground inline-flex items-center gap-1.5">
             <WhatsAppIcon className="h-4 w-4" /> WhatsApp
