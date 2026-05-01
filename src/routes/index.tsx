@@ -148,9 +148,9 @@ function Header() {
   const { t } = useT();
   return (
     <header className="border-b border-border/60 bg-background/80 backdrop-blur sticky top-0 z-40">
-      <div className="mx-auto max-w-6xl px-6 h-24 md:h-28 flex items-center justify-between gap-4">
-        <a href="#top" className="flex items-center gap-2 shrink-0">
-          <img src={logoWordmark} alt="Opstartdesk" className="h-16 md:h-20 w-auto drop-shadow-sm" />
+      <div className="mx-auto max-w-6xl px-6 h-28 md:h-32 flex items-center justify-between gap-4">
+        <a href="#top" className="flex items-center gap-2 shrink-0" aria-label="Opstartdesk — home">
+          <img src={logoWordmark} alt="Opstartdesk — company formation & startup services" className="h-20 md:h-24 w-auto drop-shadow-sm" />
         </a>
         <nav className="hidden lg:flex items-center gap-7 text-sm text-muted-foreground">
           <a href="#stappen" className="hover:text-foreground transition-colors">{t("nav.how")}</a>
