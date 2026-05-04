@@ -815,7 +815,7 @@ function CTA() {
             <h2 className="font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
               {t("cta.title")}
             </h2>
-            <p className="mt-4 text-muted-foreground mx-auto max-w-2xl">{t("cta.intro")</p>
+            <p className="mt-4 text-muted-foreground mx-auto max-w-2xl">{t("cta.intro")}</p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <Button asChild size="lg" className="rounded-full bg-[#25D366] text-white hover:bg-[#1ebe5a] h-14 px-8 font-semibold text-base">
                 <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label={t("cta.whatsapp")}>
