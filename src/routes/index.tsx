@@ -174,45 +174,47 @@ function Hero() {
   const { t } = useT();
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="mx-auto max-w-3xl px-6 pt-12 pb-12 lg:pt-16 lg:pb-16 text-center">
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-            {t("hero.badge.exp")}
-          </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
-            <Globe className="h-3.5 w-3.5 text-accent" /> {t("hero.badge.belgium")}
-          </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
-            <Laptop className="h-3.5 w-3.5 text-accent" /> {t("hero.badge.digital")}
-          </span>
+      <div className="mx-auto max-w-6xl px-6 pt-12 pb-12 lg:pt-16 lg:pb-16">
+        <div className="max-w-3xl">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+              {t("hero.badge.exp")}
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
+              <Globe className="h-3.5 w-3.5 text-accent" /> {t("hero.badge.belgium")}
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
+              <Laptop className="h-3.5 w-3.5 text-accent" /> {t("hero.badge.digital")}
+            </span>
+          </div>
+          <h1 className="mt-5 font-serif font-bold text-4xl lg:text-6xl leading-[1.05] tracking-tight text-foreground">
+            {t("hero.title.1")}<br />
+            <span className="text-accent">{t("hero.title.2")}</span>
+          </h1>
+          <p className="mt-5 text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed">
+            {t("hero.sub")}
+          </p>
+          <div className="mt-7 flex flex-wrap gap-3">
+            <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6 font-semibold">
+              <a href="#guided-start">
+                {t("hero.cta.start")} <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="rounded-full h-12 px-6 font-semibold border-border bg-transparent text-foreground hover:bg-secondary">
+              <a href={CHECKLIST_URL} target="_blank" rel="noopener noreferrer" download>
+                <Download className="mr-2 h-4 w-4" /> {t("hero.cta.checklist")}
+              </a>
+            </Button>
+          </div>
+          <ul className="mt-8 grid sm:grid-cols-2 gap-2.5 text-sm text-muted-foreground max-w-2xl text-left">
+            {["hero.bullet.1", "hero.bullet.2", "hero.bullet.3", "hero.bullet.4"].map((k) => (
+              <li key={k} className="flex items-start gap-2">
+                <Check className="h-4 w-4 text-accent mt-0.5 shrink-0" /> {t(k)}
+              </li>
+            ))}
+          </ul>
         </div>
-        <h1 className="mt-5 font-serif font-bold text-4xl lg:text-6xl leading-[1.05] tracking-tight text-foreground">
-          {t("hero.title.1")}<br />
-          <span className="text-accent">{t("hero.title.2")}</span>
-        </h1>
-        <p className="mt-5 text-base lg:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-          {t("hero.sub")}
-        </p>
-        <div className="mt-7 flex flex-wrap gap-3 justify-center">
-          <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6 font-semibold">
-            <a href="#guided-start">
-              {t("hero.cta.start")} <ArrowRight className="ml-2 h-4 w-4" />
-            </a>
-          </Button>
-          <Button asChild size="lg" variant="outline" className="rounded-full h-12 px-6 font-semibold border-border bg-transparent text-foreground hover:bg-secondary">
-            <a href={CHECKLIST_URL} target="_blank" rel="noopener noreferrer" download>
-              <Download className="mr-2 h-4 w-4" /> {t("hero.cta.checklist")}
-            </a>
-          </Button>
-        </div>
-        <ul className="mt-8 grid sm:grid-cols-2 gap-2.5 text-sm text-muted-foreground max-w-xl mx-auto text-left">
-          {["hero.bullet.1", "hero.bullet.2", "hero.bullet.3", "hero.bullet.4"].map((k) => (
-            <li key={k} className="flex items-start gap-2">
-              <Check className="h-4 w-4 text-accent mt-0.5 shrink-0" /> {t(k)}
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );
