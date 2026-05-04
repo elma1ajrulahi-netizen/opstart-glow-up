@@ -293,7 +293,7 @@ function ThreeSteps() {
             </div>
           ))}
         </div>
-        <div className="mt-8 text-center">
+        <div className="mt-8">
           <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7 font-semibold">
             <a href="#guided-start">{t("steps.cta")} <ArrowRight className="ml-2 h-4 w-4" /></a>
           </Button>
