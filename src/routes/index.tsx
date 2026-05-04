@@ -174,45 +174,47 @@ function Hero() {
   const { t } = useT();
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="mx-auto max-w-3xl px-6 pt-12 pb-12 lg:pt-16 lg:pb-16 text-center">
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-            {t("hero.badge.exp")}
-          </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
-            <Globe className="h-3.5 w-3.5 text-accent" /> {t("hero.badge.belgium")}
-          </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
-            <Laptop className="h-3.5 w-3.5 text-accent" /> {t("hero.badge.digital")}
-          </span>
+      <div className="mx-auto max-w-6xl px-6 pt-12 pb-12 lg:pt-16 lg:pb-16">
+        <div className="max-w-3xl">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+              {t("hero.badge.exp")}
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
+              <Globe className="h-3.5 w-3.5 text-accent" /> {t("hero.badge.belgium")}
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
+              <Laptop className="h-3.5 w-3.5 text-accent" /> {t("hero.badge.digital")}
+            </span>
+          </div>
+          <h1 className="mt-5 font-serif font-bold text-4xl lg:text-6xl leading-[1.05] tracking-tight text-foreground">
+            {t("hero.title.1")}<br />
+            <span className="text-accent">{t("hero.title.2")}</span>
+          </h1>
+          <p className="mt-5 text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed">
+            {t("hero.sub")}
+          </p>
+          <div className="mt-7 flex flex-wrap gap-3">
+            <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6 font-semibold">
+              <a href="#guided-start">
+                {t("hero.cta.start")} <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="rounded-full h-12 px-6 font-semibold border-border bg-transparent text-foreground hover:bg-secondary">
+              <a href={CHECKLIST_URL} target="_blank" rel="noopener noreferrer" download>
+                <Download className="mr-2 h-4 w-4" /> {t("hero.cta.checklist")}
+              </a>
+            </Button>
+          </div>
+          <ul className="mt-8 grid sm:grid-cols-2 gap-2.5 text-sm text-muted-foreground max-w-2xl text-left">
+            {["hero.bullet.1", "hero.bullet.2", "hero.bullet.3", "hero.bullet.4"].map((k) => (
+              <li key={k} className="flex items-start gap-2">
+                <Check className="h-4 w-4 text-accent mt-0.5 shrink-0" /> {t(k)}
+              </li>
+            ))}
+          </ul>
         </div>
-        <h1 className="mt-5 font-serif font-bold text-4xl lg:text-6xl leading-[1.05] tracking-tight text-foreground">
-          {t("hero.title.1")}<br />
-          <span className="text-accent">{t("hero.title.2")}</span>
-        </h1>
-        <p className="mt-5 text-base lg:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-          {t("hero.sub")}
-        </p>
-        <div className="mt-7 flex flex-wrap gap-3 justify-center">
-          <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6 font-semibold">
-            <a href="#guided-start">
-              {t("hero.cta.start")} <ArrowRight className="ml-2 h-4 w-4" />
-            </a>
-          </Button>
-          <Button asChild size="lg" variant="outline" className="rounded-full h-12 px-6 font-semibold border-border bg-transparent text-foreground hover:bg-secondary">
-            <a href={CHECKLIST_URL} target="_blank" rel="noopener noreferrer" download>
-              <Download className="mr-2 h-4 w-4" /> {t("hero.cta.checklist")}
-            </a>
-          </Button>
-        </div>
-        <ul className="mt-8 grid sm:grid-cols-2 gap-2.5 text-sm text-muted-foreground max-w-xl mx-auto text-left">
-          {["hero.bullet.1", "hero.bullet.2", "hero.bullet.3", "hero.bullet.4"].map((k) => (
-            <li key={k} className="flex items-start gap-2">
-              <Check className="h-4 w-4 text-accent mt-0.5 shrink-0" /> {t(k)}
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );
@@ -291,7 +293,7 @@ function ThreeSteps() {
             </div>
           ))}
         </div>
-        <div className="mt-8 text-center">
+        <div className="mt-8">
           <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7 font-semibold">
             <a href="#guided-start">{t("steps.cta")} <ArrowRight className="ml-2 h-4 w-4" /></a>
           </Button>
@@ -351,7 +353,7 @@ function GuidedStart() {
 
   return (
     <section id="guided-start" className="py-14 lg:py-20 bg-secondary/40 border-y border-border">
-      <div className="mx-auto max-w-4xl px-6">
+      <div className="mx-auto max-w-5xl px-6">
         <div className="max-w-2xl">
           <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">{t("guided.eyebrow")}</span>
           <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
@@ -549,7 +551,7 @@ function Werkwijze() {
   ];
   return (
     <section id="werkwijze" className="py-14 lg:py-20 bg-secondary/40 border-y border-border">
-      <div className="mx-auto max-w-4xl px-6">
+      <div className="mx-auto max-w-5xl px-6">
         <div className="max-w-2xl">
           <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">{t("method.eyebrow")}</span>
           <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
@@ -775,8 +777,8 @@ function FAQ() {
   ];
   return (
     <section id="faq" className="py-14 lg:py-20">
-      <div className="mx-auto max-w-3xl px-6">
-        <div className="text-center">
+      <div className="mx-auto max-w-4xl px-6">
+        <div className="max-w-2xl">
           <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">{t("faq.eyebrow")}</span>
           <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">{t("faq.title")}</h2>
           <p className="mt-3 text-sm text-muted-foreground">
@@ -806,15 +808,15 @@ function CTA() {
   const { t } = useT();
   return (
     <section id="start" className="py-16 lg:py-24">
-      <div className="mx-auto max-w-4xl px-6">
-        <div className="rounded-[2rem] bg-card border border-border p-10 lg:p-14 text-center relative overflow-hidden">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="rounded-[2rem] bg-card border border-border p-10 lg:p-14 relative overflow-hidden">
           <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-accent/20 blur-3xl" />
-          <div className="relative">
+          <div className="relative max-w-2xl">
             <h2 className="font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
               {t("cta.title")}
             </h2>
-            <p className="mt-4 text-muted-foreground max-w-lg mx-auto">{t("cta.intro")}</p>
-            <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+            <p className="mt-4 text-muted-foreground max-w-lg">{t("cta.intro")}</p>
+            <div className="mt-7 flex flex-wrap items-center gap-3">
               <Button asChild size="lg" className="rounded-full bg-[#25D366] text-white hover:bg-[#1ebe5a] h-14 px-8 font-semibold text-base">
                 <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label={t("cta.whatsapp")}>
                   <WhatsAppIcon className="mr-2 h-5 w-5" /> {t("cta.whatsapp")}
