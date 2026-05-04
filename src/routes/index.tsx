@@ -551,7 +551,7 @@ function Werkwijze() {
   ];
   return (
     <section id="werkwijze" className="py-14 lg:py-20 bg-secondary/40 border-y border-border">
-      <div className="mx-auto max-w-4xl px-6">
+      <div className="mx-auto max-w-5xl px-6">
         <div className="max-w-2xl">
           <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">{t("method.eyebrow")}</span>
           <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
