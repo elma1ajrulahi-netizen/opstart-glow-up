@@ -353,7 +353,7 @@ function GuidedStart() {
 
   return (
     <section id="guided-start" className="py-14 lg:py-20 bg-secondary/40 border-y border-border">
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-4xl text-center">
           <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">{t("guided.eyebrow")}</span>
           <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
@@ -551,7 +551,7 @@ function Werkwijze() {
   ];
   return (
     <section id="werkwijze" className="py-14 lg:py-20 bg-secondary/40 border-y border-border">
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-4xl text-center">
           <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">{t("method.eyebrow")}</span>
           <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
@@ -777,7 +777,7 @@ function FAQ() {
   ];
   return (
     <section id="faq" className="py-14 lg:py-20">
-      <div className="mx-auto max-w-4xl px-6">
+      <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-4xl text-center">
           <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">{t("faq.eyebrow")}</span>
           <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">{t("faq.title")}</h2>
@@ -808,14 +808,14 @@ function CTA() {
   const { t } = useT();
   return (
     <section id="start" className="py-16 lg:py-24">
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto max-w-6xl px-6">
         <div className="rounded-[2rem] bg-card border border-border p-10 lg:p-14 relative overflow-hidden">
           <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-accent/20 blur-3xl" />
           <div className="relative mx-auto max-w-4xl text-center">
             <h2 className="font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">
               {t("cta.title")}
             </h2>
-            <p className="mt-4 text-muted-foreground max-w-lg">{t("cta.intro")}</p>
+            <p className="mt-4 text-muted-foreground mx-auto max-w-2xl">{t("cta.intro")</p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <Button asChild size="lg" className="rounded-full bg-[#25D366] text-white hover:bg-[#1ebe5a] h-14 px-8 font-semibold text-base">
                 <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label={t("cta.whatsapp")}>
