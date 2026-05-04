@@ -777,8 +777,8 @@ function FAQ() {
   ];
   return (
     <section id="faq" className="py-14 lg:py-20">
-      <div className="mx-auto max-w-3xl px-6">
-        <div className="text-center">
+      <div className="mx-auto max-w-4xl px-6">
+        <div className="max-w-2xl">
           <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">{t("faq.eyebrow")}</span>
           <h2 className="mt-3 font-serif font-bold text-4xl lg:text-5xl text-foreground tracking-tight">{t("faq.title")}</h2>
           <p className="mt-3 text-sm text-muted-foreground">
