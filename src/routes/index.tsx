@@ -176,7 +176,7 @@ function Hero() {
     <section id="top" className="relative overflow-hidden">
       <div className="mx-auto max-w-6xl px-6 pt-12 pb-12 lg:pt-16 lg:pb-16">
         <div className="mx-auto max-w-5xl text-center">
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center justify-center gap-2">
             <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
               <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
               {t("hero.badge.exp")}
@@ -192,10 +192,10 @@ function Hero() {
             {t("hero.title.1")}<br />
             <span className="text-accent">{t("hero.title.2")}</span>
           </h1>
-          <p className="mt-5 text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed">
+          <p className="mt-5 text-base lg:text-lg text-muted-foreground mx-auto max-w-3xl leading-relaxed">
             {t("hero.sub")}
           </p>
-          <div className="mt-7 flex flex-wrap gap-3">
+          <div className="mt-7 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6 font-semibold">
               <a href="#guided-start">
                 {t("hero.cta.start")} <ArrowRight className="ml-2 h-4 w-4" />
@@ -207,7 +207,7 @@ function Hero() {
               </a>
             </Button>
           </div>
-          <ul className="mt-8 grid sm:grid-cols-2 gap-2.5 text-sm text-muted-foreground max-w-2xl text-left">
+          <ul className="mt-8 mx-auto grid sm:grid-cols-2 gap-2.5 text-sm text-muted-foreground max-w-3xl text-left">
             {["hero.bullet.1", "hero.bullet.2", "hero.bullet.3", "hero.bullet.4"].map((k) => (
               <li key={k} className="flex items-start gap-2">
                 <Check className="h-4 w-4 text-accent mt-0.5 shrink-0" /> {t(k)}
